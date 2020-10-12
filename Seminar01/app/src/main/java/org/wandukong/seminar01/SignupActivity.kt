@@ -25,7 +25,7 @@ class SignupActivity : AppCompatActivity() {
                 Toast.makeText(this, "빈칸을 채워주세요.",Toast.LENGTH_SHORT).show()
             else if(!et_cpw_signup.text.toString().equals(et_pw_signup.text.toString())) { //TODO 비밀번호 확인이 다른 경우
                 Toast.makeText(this, "비밀번호와 비밀번호 확인이 다릅니다.",Toast.LENGTH_SHORT).show()
-            }else{ //TODO 로그인 성공
+            }else{ //TODO 회원가입 성공
                 val intent = Intent()
                 intent.putExtra("email",et_id_signup.text.toString())
                 intent.putExtra("password",et_pw_signup.text.toString())

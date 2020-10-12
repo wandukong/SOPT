@@ -23,26 +23,23 @@ class MainActivity : AppCompatActivity() {
 
         member = getSharedPreferences( "memberDB", MODE_PRIVATE)
 
-
-        val intent = Intent(this, HomeActivity::class.java)
+        val loginIntent = Intent(this, HomeActivity::class.java)
 
         if(member.contains("*LATEST*")){
-
-            intent.putExtra("autoLogin",true)
-            startActivityForResult(intent, REQUEST_LOGIN)
+            loginIntent.putExtra("autoLogin",true)
+            startActivityForResult(loginIntent, REQUEST_LOGIN)
         }
 
         btn_login_login.setOnClickListener {//TODO 로그인
             if(!member.getString(et_id_login.text.toString(),"").equals(et_pw_login.text.toString())){
                 Toast.makeText(this, "아이디와 비밀번호를 확인하세요.",Toast.LENGTH_SHORT).show()
             }else{
-
                 val preferencesEditor: SharedPreferences.Editor = member.edit()
                 preferencesEditor.putString("*LATEST*",et_id_login.text.toString())
                 preferencesEditor.commit()
 
-                intent.putExtra("autoLogin",false)
-                startActivityForResult(intent, REQUEST_LOGIN)
+                loginIntent.putExtra("autoLogin",false)
+                startActivityForResult(loginIntent, REQUEST_LOGIN)
             }
         }
 
@@ -57,13 +54,13 @@ class MainActivity : AppCompatActivity() {
 
         if(resultCode == Activity.RESULT_OK){
             when(requestCode){
-                REQUEST_SIGNUP->{ //TODO 
+                REQUEST_SIGNUP->{ //TODO 회원가입
 
                     Toast.makeText(this,"회원가입 성공",Toast.LENGTH_SHORT).show()
                     et_id_login.setText(data?.getStringExtra("email"))
                     et_pw_login.setText(data?.getStringExtra("password"))
                 }
-                REQUEST_LOGIN->{ //TODO 회원가입
+                REQUEST_LOGIN->{ //TODO 로그아웃 - 홈에서 로그아웃할 때, MainActivity로 되돌아온다.
                     Toast.makeText(this,"${data?.getStringExtra("id")} 로그아웃 성공",Toast.LENGTH_SHORT).show()
                 }
             }
