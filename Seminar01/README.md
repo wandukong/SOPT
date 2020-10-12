@@ -1,13 +1,13 @@
 
 # 📣Seminar01
- **
- 1. Layout 종류  
- 2. ViewGroup & View  
- 3. startActivity & startActivityForResult  
- 4. SharedPreferences  
- **
+ 
+ **1. Layout 종류 **    
+ **2. ViewGroup & View**   
+ **3. startActivity & startActivityForResult**    
+ **4. SharedPreferences **   
+ 
 
-## view에서 text 읽기 및 쓰기
+## 🍭view에서 text 읽기 및 쓰기
 
 **읽기**  
 view.text.toString() : view로부터 text속성의 값을 불러올 수 있다.
@@ -20,7 +20,7 @@ view.setText() : view의 text속성의 값을 지정할 수 있다.
 et_id_login.setText(data?.getStringExtra("email"))
 ```
 
-## startActivity()
+## 🍜startActivity()
 startActivity는 이동하려는 Activity를 호출한다.  
 데이터를 이동하려는 Activity로 보낼수는 있지만, 이동하려는 Activity에서 데이터를 받을 수는 없다.  
 즉, 단방향으로 데이터를 전송하고 싶을 때 사용한다.  
@@ -37,7 +37,7 @@ if(getIntent().getBooleanExtra("autoLogin",false)){
 }
 ```
 
-## startActivityForResult()
+## 🍣startActivityForResult()
 startActivity는 이동하려는 Activity를 호출하고, 이동한 Activity으로부터 result를 받는다.  
 Activity 간 데이터를 주고 받을 수 있다.   
 즉, 데이터를 양방향으로 전송하고 싶을 때 사용한다.  
@@ -71,7 +71,7 @@ override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) 
 }
 ```
 
-## SharedPreferences
+## 🍻SharedPreferences
 간단한 Database를 만들고 싶을 때 사용한다.   
 SharedPreferences는 App의 저장소에 xml파일을 만들어, 데이터를 저장할 수 있게 해준다.   
 데이터는 Key/Value 형식으로 저장이 된다.  
