@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RelativeActivity">
+
+    <TextView
+        android:id="@+id/title_tv2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        android:text="SOPT2"
+        android:textSize="50sp"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/id_tv2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="아이디"
+        android:textSize="20sp"
+        android:layout_below="@id/title_tv2"
+        android:layout_marginTop="96dp"
+        android:layout_marginStart="63dp"/>
+
+    <EditText
+        android:id="@+id/id_et2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="63dp"
+        android:ems="10"
+        android:layout_below="@id/id_tv2"
+        android:layout_alignStart="@+id/id_tv2" />
+
+    <TextView
+        android:id="@+id/pw_tv2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:layout_below="@+id/id_et2"
+        android:layout_marginTop="20dp"
+        android:layout_alignStart="@+id/id_et2"
+        android:text="비밀번호"/>
+
+    <EditText
+        android:id="@+id/pw_et2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:layout_below="@id/pw_tv2"
+        android:layout_alignStart="@+id/pw_tv2"
+        android:layout_alignEnd="@+id/id_et2"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="button"
+        android:layout_marginTop="30dp"
+        android:layout_below="@id/pw_et2"
+        android:layout_alignStart="@id/pw_et2"
+        android:layout_alignEnd="@id/pw_et2"/>
+
+</RelativeLayout>
