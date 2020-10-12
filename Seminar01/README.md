@@ -1,10 +1,10 @@
 
 # 📣Seminar01
  
- **1. Layout 종류 **    
+ **1. Layout 종류**    
  **2. ViewGroup & View**   
  **3. startActivity & startActivityForResult**    
- **4. SharedPreferences **   
+ **4. SharedPreferences**   
  
 
 ## 🍭view에서 text 읽기 및 쓰기
