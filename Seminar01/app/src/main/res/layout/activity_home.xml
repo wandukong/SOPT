@@ -14,9 +14,8 @@
         android:layout_marginTop="160dp"
         android:text="반갑습니다🙋‍♂️🙋‍♀️"
         android:textColor="@color/yellow"
-        android:textSize="40sp"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="@+id/btn_logout_home"
-        app:layout_constraintHorizontal_bias="0.954"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
