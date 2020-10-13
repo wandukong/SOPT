@@ -12,7 +12,7 @@
 	<img src="https://user-images.githubusercontent.com/47289479/95879064-e6a65e00-0db0-11eb-9310-0af0c0fe6dbf.gif" width="300" height="495"/>
 	<img src="https://user-images.githubusercontent.com/47289479/95878606-608a1780-0db0-11eb-9eaa-1e7f3ab470d5.gif" width="300" height="495"/>
 </p>
- 
+①회원가입 및 로그인　　　　　　　　　　　②자동 로그인 및 로그아웃  
 
 ## 🍭view에서 text 읽기 및 쓰기
 
