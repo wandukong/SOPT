@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_signup.*
+import org.json.JSONArray
 
 class SignupActivity : AppCompatActivity() {
 
@@ -21,9 +22,11 @@ class SignupActivity : AppCompatActivity() {
         btn_submit_signup.setOnClickListener {
             
             //TODO 빈칸있을 경우
-            if(et_namme_signup.text.toString().isNullOrBlank() || et_id_signup.text.toString().isNullOrBlank() || et_pw_signup.text.toString().isNullOrBlank()  || et_cpw_signup.text.toString().isNullOrBlank() )
-                Toast.makeText(this, "빈칸을 채워주세요.",Toast.LENGTH_SHORT).show()
-            else if(!et_cpw_signup.text.toString().equals(et_pw_signup.text.toString())) { //TODO 비밀번호 확인이 다른 경우
+            if(et_namme_signup.text.toString().isNullOrBlank() || et_id_signup.text.toString().isNullOrBlank() || et_pw_signup.text.toString().isNullOrBlank()  || et_cpw_signup.text.toString().isNullOrBlank() ) {
+                Toast.makeText(this, "빈칸을 채워주세요.", Toast.LENGTH_SHORT).show()
+            }else if(member.contains(et_id_signup.text.toString())){
+                Toast.makeText(this, "이미 존재하는 ID입니다.",Toast.LENGTH_SHORT).show()
+            }else if(!et_cpw_signup.text.toString().equals(et_pw_signup.text.toString())) { //TODO 비밀번호 확인이 다른 경우
                 Toast.makeText(this, "비밀번호와 비밀번호 확인이 다릅니다.",Toast.LENGTH_SHORT).show()
             }else{ //TODO 회원가입 성공
                 val intent = Intent()
@@ -32,8 +35,12 @@ class SignupActivity : AppCompatActivity() {
                 setResult(Activity.RESULT_OK, intent)
 
 
+                val memberArray = JSONArray()
+                memberArray.put(et_namme_signup.text.toString())
+                memberArray.put(et_pw_signup.text.toString())
+
                 val preferencesEditor: SharedPreferences.Editor = member.edit()
-                preferencesEditor.putString(et_id_signup.text.toString(),et_pw_signup.text.toString())
+                preferencesEditor.putString(et_id_signup.text.toString(), memberArray.toString())
 
                 preferencesEditor.commit()
                 finish()

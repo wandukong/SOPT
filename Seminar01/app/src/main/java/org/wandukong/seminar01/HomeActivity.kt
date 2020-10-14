@@ -18,16 +18,18 @@ class HomeActivity : AppCompatActivity() {
 
         member = getSharedPreferences("memberDB", MODE_PRIVATE)
 
+        var name = getIntent().getStringExtra("name")
+
         if(getIntent().getBooleanExtra("autoLogin",false)){
-            Toast.makeText(this,"${member.getString("*LATEST*","")} 자동 로그인",Toast.LENGTH_SHORT).show()
+            Toast.makeText(this,"${member.getString("*LATEST*", "")}님 자동 로그인",Toast.LENGTH_SHORT).show()
         }else{
-            Toast.makeText(this,"${member.getString("*LATEST*","")} 로그인 성공",Toast.LENGTH_SHORT).show()
+            Toast.makeText(this,"${member.getString("*LATEST*", "")}님 로그인 성공",Toast.LENGTH_SHORT).show()
         }
 
         btn_logout_home.setOnClickListener {
 
             val intent = Intent()
-            intent.putExtra("id", member.getString("*LATEST*",""))
+            intent.putExtra("name", member.getString("*LATEST*", ""))
             setResult(Activity.RESULT_OK, intent)
 
             val preferencesEditor: SharedPreferences.Editor = member.edit()

@@ -115,3 +115,31 @@ if(member.contains("*LATEST*")){  // *LATEST*라는 키를 가진 데이터가 �
     startActivityForResult(loginIntent, REQUEST_LOGIN)  
 }
 ```
+
+### ArrayList 저장 및 불러오기
+
+#### 저장
+```kotlin
+val memberArray = JSONArray()
+memberArray.put(et_namme_signup.text.toString())
+memberArray.put(et_pw_signup.text.toString())
+
+val preferencesEditor: SharedPreferences.Editor = member.edit()
+preferencesEditor.putString(et_id_signup.text.toString(), memberArray.toString()) // key값을 ID로 지정
+```
+
+#### 불러오기
+```kotlin 
+var memberJson: String? = member.getString(et_id_login.text.toString(), null) // 아이디로 value를 가지고 온다. String 타입
+	
+var memberArray:JSONArray? = null // value를 담을 배열 ["이름", "비밀번호"]
+if(memberJson != null){
+	memberArray = JSONArray(memberJson) // JSONArray로 변환
+}
+// memberArray[0], memberArray[1]로 접근
+```
+
+
+
+
+
