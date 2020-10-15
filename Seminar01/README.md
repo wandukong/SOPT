@@ -9,7 +9,7 @@
 ## 📱결과 화면
 
 <p float="left">
-	<img src="https://user-images.githubusercontent.com/47289479/96068615-69c1d400-0ed7-11eb-8e27-8e0312c4aed2.gif	" width="300" height="495"/>
+	<img src="https://user-images.githubusercontent.com/47289479/96073917-6bdd6000-0ee2-11eb-9143-c2442804757c.gif" width="300" height="495"/>
 	<img src="https://user-images.githubusercontent.com/47289479/96068637-76462c80-0ed7-11eb-8b0a-c8ea386a8672.gif" width="300" height="495"/>
 </p>
 ①회원가입 및 로그인　　　　　　　　　　②자동 로그인 및 로그아웃  
