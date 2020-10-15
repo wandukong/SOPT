@@ -9,8 +9,8 @@
 ## 📱결과 화면
 
 <p float="left">
-	<img src="https://user-images.githubusercontent.com/47289479/95879064-e6a65e00-0db0-11eb-9310-0af0c0fe6dbf.gif" width="300" height="495"/>
-	<img src="https://user-images.githubusercontent.com/47289479/95878606-608a1780-0db0-11eb-9eaa-1e7f3ab470d5.gif" width="300" height="495"/>
+	<img src="https://user-images.githubusercontent.com/47289479/96068615-69c1d400-0ed7-11eb-8e27-8e0312c4aed2.gif	" width="300" height="495"/>
+	<img src="https://user-images.githubusercontent.com/47289479/96068637-76462c80-0ed7-11eb-8b0a-c8ea386a8672.gif" width="300" height="495"/>
 </p>
 ①회원가입 및 로그인　　　　　　　　　　②자동 로그인 및 로그아웃  
 
