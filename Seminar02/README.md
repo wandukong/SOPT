@@ -1,8 +1,10 @@
+# 📣Seminar02
+**작성일자 : 2020.10.15**
+**1. RecyclerView**  
+ 
+## 📱결과 화면
 
-# Seminar02
- **1. RecyclerView**  
-
-## Data Class
+## 🚗Data Class
 RecyclervView의 각 리스트마다 필요한 데이터를 담을 **data class**를 만든다.  
 ```kotlin
 data class SampleData(  
@@ -11,7 +13,7 @@ data class SampleData(
 )
 ```
 
-## View Holder
+## 🚌View Holder
 **View Holder**는 각 list의 view를 담고 있는다.  
 각각의 item은 view로 만들어지며, item을 위한 view는 **View Holder**에 담아두게 된다.  
 **View Holder**는 list의 view들을 연결해주고, data를 넣어주는 역할(**binding**)을 한다.   
@@ -30,7 +32,7 @@ class SampleViewHolder (itemView : View) : RecyclerView.ViewHolder(itemView){
 **RecyclerView.ViewHolder를 상속 받은 후, itemView를 생성자로 넣어준다**.  
 이때, itemView는 각 리스트에 담아둘 아이템을 정의한  xml파일을 가리킨다.  
 
-## Adapter	
+## ✈Adapter	
 **Adapter**는 각 View Holder를 생성 및 관리한다.  
 Context 객체가 필요하므로, Context 객체를 선언과 동시에 초기화 해준다.  
 RecyclerView.Adapter를 상속받으며, <>안에 어떤 View Holder를 업데이트 해줄지 지정한다.  
@@ -68,7 +70,7 @@ class SampleAdapter (private val context : Context) : RecyclerView.Adapter<Sampl
 }
 ```
 
-## 적용	
+## 🛴적용	
 RecyclerView에 **Adapter**와 **Layout Manager**를 지정해준다.  
 ```kotlin
 private lateinit var profileAdapter: SampleAdapter
@@ -93,14 +95,14 @@ profileAdapter.data = mutableListOf(
 )
 ```
 
-## Grid Layout
+## 🚲Grid Layout
 격자 모양으로 list들을 배치할 수 있다.  
 ```kotlin
 rcv_teamList_home.layoutManager = GridLayoutManager(this, 3, RecyclerView.VERTICAL, false)
 // parameter : context, 나눌 개수, 나누는 방향, 채우는 방향 
 ```
 
-## item View에 Click Event 넣기
+## 🚉item View에 Click Event 넣기
 모든 item View에 click event를 넣으려면, 항상 실행되는 onBindViewHolder() 안에서 setOnClickListener를 정의한다.  
 
 ```kotlin
