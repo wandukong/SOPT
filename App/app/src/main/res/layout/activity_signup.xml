@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    tools:context=".SignupActivity">
+
+
+    <TextView
+        android:id="@+id/tv_title_signup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:text="Sign Up"
+        android:textSize="30sp"
+        android:textColor="@color/yellow"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_name_signup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:text="Name"
+        android:textColor="@color/yellow"
+        android:layout_marginStart="63dp"
+        android:layout_marginEnd="63dp"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title_signup" />
+
+    <EditText
+        android:id="@+id/et_namme_signup"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="63dp"
+        android:inputType="textPersonName"
+        android:hint="이름을 입력하세요."
+        android:background="#ffffff"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/tv_name_signup"
+        app:layout_constraintTop_toBottomOf="@+id/tv_name_signup" />
+
+    <TextView
+        android:id="@+id/tv_id_signup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Email"
+        android:textColor="@color/yellow"
+        android:textSize="15sp"
+        android:inputType="textEmailAddress"
+        app:layout_constraintStart_toStartOf="@+id/et_namme_signup"
+        app:layout_constraintTop_toBottomOf="@+id/et_namme_signup" />
+
+    <EditText
+        android:id="@+id/et_id_signup"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:inputType="textPersonName"
+        android:hint="사용할 이메일을 입력하세요."
+        android:background="#ffffff"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/et_namme_signup"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/tv_id_signup"
+        app:layout_constraintTop_toBottomOf="@+id/tv_id_signup" />
+
+    <TextView
+        android:id="@+id/tv_pw_signup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textSize="15sp"
+        android:text="Password"
+        android:textColor="@color/yellow"
+        app:layout_constraintStart_toStartOf="@+id/et_id_signup"
+        app:layout_constraintTop_toBottomOf="@+id/et_id_signup" />
+
+    <EditText
+        android:id="@+id/et_pw_signup"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:hint="8글자 이상으로 입력하세요."
+        android:background="#ffffff"
+        android:inputType="textPassword"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/et_id_signup"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/tv_pw_signup"
+        app:layout_constraintTop_toBottomOf="@+id/tv_pw_signup" />
+
+    <TextView
+        android:id="@+id/tv_cpw_signup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textSize="15sp"
+        android:textColor="@color/yellow"
+        android:text="Confirm Password"
+        app:layout_constraintStart_toStartOf="@+id/et_pw_signup"
+        app:layout_constraintTop_toBottomOf="@+id/et_pw_signup" />
+
+    <EditText
+        android:id="@+id/et_cpw_signup"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textSize="18sp"
+        android:inputType="textPassword"
+        android:hint="비밀번호를 확인하세요."
+        android:background="#ffffff"
+        app:layout_constraintEnd_toEndOf="@+id/et_pw_signup"
+        app:layout_constraintStart_toStartOf="@+id/tv_cpw_signup"
+        app:layout_constraintTop_toBottomOf="@+id/tv_cpw_signup" />
+
+    <Button
+        android:id="@+id/btn_submit_signup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="43dp"
+        android:text="Submit"
+        android:textColor="@color/yellow"
+        android:textSize="20dp"
+        android:background="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_cpw_signup" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
