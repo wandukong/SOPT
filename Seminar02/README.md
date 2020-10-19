@@ -1,6 +1,6 @@
 # 📣Seminar02
-**작성일자 : 2020.10.15**
-**1. RecyclerView**  
+**작성일자 : 2020.10.15**  
+**1. RecyclerView**   
  
 ## 📱결과 화면
 
@@ -8,8 +8,8 @@
 RecyclervView의 각 리스트마다 필요한 데이터를 담을 **data class**를 만든다.  
 ```kotlin
 data class SampleData(  
-    val title : String,  
-	val subTitle : String  
+    val title : String, 
+    val subTitle : String  
 )
 ```
 
