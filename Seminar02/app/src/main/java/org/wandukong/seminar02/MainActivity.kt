@@ -19,7 +19,6 @@ class MainActivity : AppCompatActivity() {
             adapter = profileAdapter
             layoutManager=LinearLayoutManager(context)
         }
-
         // main_rcv.adapter = profileAdapter
         // main_rcv.layoutManager = LinearLayoutManager(this)
 
