@@ -1,34 +1,35 @@
 package org.wandukong.app
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.MotionEvent
+import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 
-class TeamAdapter (private val context : Context) : RecyclerView.Adapter<TeamViewHolder>(){
+class TeamAdapter (private val context : Context, private val touchHelper : ItemTouchHelper) : RecyclerView.Adapter<TeamViewHolder>() {
 
-    var data = mutableListOf<TeamData>()
+    var data: MutableList<TeamData> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TeamViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.project_item_list, parent, false)
+        var view = LayoutInflater.from(context).inflate(R.layout.project_item_list2, parent, false)
         return TeamViewHolder(view)
     }
 
     override fun getItemCount(): Int = data.size
 
-    override fun onBindViewHolder(holder: TeamViewHolder, position: Int) { // 데이터를 넣어준다.
+    @SuppressLint("ClickableViewAccessibility")
+    override fun onBindViewHolder(holder: TeamViewHolder, position: Int) {
         holder.onBind(data[position])
-        holder.itemView.setOnClickListener {
-
-            var intent = Intent(context, TeamDetailActivity::class.java)
-
-            intent.putExtra("title", data[position].title)
-            intent.putExtra("subTitle", data[position].subTitle)
-            intent.putExtra("date", data[position].date)
-            intent.putExtra("detail", data[position].detail)
-
-            context.startActivity(intent)
+        holder.move.setOnTouchListener { _, event ->
+            if (event.action == MotionEvent.ACTION_DOWN) {
+                touchHelper.startDrag(holder)
+            }
+            false
         }
     }
 }

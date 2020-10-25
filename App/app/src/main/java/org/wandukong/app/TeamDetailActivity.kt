@@ -16,6 +16,5 @@ class TeamDetailActivity : AppCompatActivity() {
         tv_subtitle_project_detail.setText(intent.getStringExtra("subTitle"))
         tv_date_poject_detail.setText(intent.getStringExtra("date"))
         tv_detail_project_detail.setText(intent.getStringExtra("detail"))
-
     }
 }
