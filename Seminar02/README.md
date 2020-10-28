@@ -102,77 +102,140 @@ rcv_teamList_home.layoutManager = GridLayoutManager(this, 3, RecyclerView.VERTIC
 // parameter : context, 나눌 개수, 나누는 방향, 채우는 방향 
 ```
 
+
 ## 🚉Item View에 Click Event 넣기
-모든 item View에 click event를 넣으려면, 항상 실행되는 onBindViewHolder() 안에서 setOnClickListener를 정의한다.  
+긱 data에 맞는 상세 페이지 click event를 넣기 위해,   
+**onBind()로 data가 view holder에 바인딩 될 때, 각 data에 맞는 click event도 정의해준다.**   
+onBindViewHolder()에서 처리하려고 했으나, List에서 데이터 값들은 바뀌지만,    
+onBindViewHolder()가 호출되지 않는 경우, click event가 재정의 되지 않아, 기존의 데이터에 대한 click event가 실행되었다.   
+(onBindViewHolder()가 호출되는 시점은 view holder가 처음 만들어지거나, 스크롤을 해서 데이터 바인딩이 새롭게 필요할 때 마다 호출된다.)  
 
 ```kotlin
-override fun onBindViewHolder(holder: TeamViewHolder, position: Int) {
-	// ... 
-    holder.itemView.setOnClickListener {  
-        // ... 
+fun onBind(data : TeamData) {
+        title.text = data.title
+        subTitle.text = data.subTitle
+
+        itemView.setOnClickListener {
+            var intent = Intent(itemView.context, TeamDetailActivity::class.java)
+
+            intent.putExtra("title", data.title)
+            intent.putExtra("subTitle", data.subTitle)
+            intent.putExtra("date", data.date)
+            intent.putExtra("detail", data.detail)
+
+            itemView.context.startActivity(intent)
+        }
     }
 ```
-setOnclickListener에서 startActivity()를 이용하여, 상세 정보를 확인할 수 있는 Acitivity를 호출한다.  
+
+## 🚉Touch Helpr를 통한 Item View 이동 및 삭제
+
+
+#### ItemTouchHelper
+ItemTouchHelper는 RecyclerView의 swipe 및 drag & drop 기능들을 지원하기 위한 클래스이다. RecyclerView와  Callback class와 같이 작동한다.   
+
+#### ItemTouchHelper.Callback
+사용자의 어떤 이벤트를 받을 것이고, 그에 대응되는 어떤 작업을 할 것인지 정의된다.  즉, view holder마다 어떤 터치 동작을 유효하게 할지를 제어하고, 사용자가 해당 터치를 했을 때, 해당 동작에 맞는 콜백 함수들을 받는다.   
+
+1️⃣``getMovementFlags(RecyclerView, ViewHolder)``  
+사용자 수행한 터치 동작을 제어하기 위해 getMovementFlags(RecyclerView, ViewHolder)를 재정의하고 적절한 방향 플래그 집합(START, END, UP, DOWN)을 반환해야 한다. makeMovementFlags(int, int)를 사용하여 쉽게 구성할 수 있다.   
 ```kotlin
-holder.itemView.setOnClickListener {  
-    var intent = Intent(context, TeamDetailActivity::class.java)  
-  
-    intent.putExtra("title", data[position].title)  
-    intent.putExtra("subTitle", data[position].subTitle)  
-    intent.putExtra("date", data[position].date)  
-    intent.putExtra("detail", data[position].detail)  
-  
-    context.startActivity(intent)  
+override fun getMovementFlags(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder): Int {  
+    return makeMovementFlags(  // (dragFlags, swipeFlags)
+        ItemTouchHelper.UP or ItemTouchHelper.DOWN or ItemTouchHelper.START or ItemTouchHelper.END,  
+        ItemTouchHelper.START or ItemTouchHelper.END  
+  )  
 }
 ```
-
-## 🚉Item View를 Drag & Drop으로 이동시키기
-
-Item View를 이동시키기 위해서 ItemTouchHelper 객체를 만들어야 한다.  
-ItemTouchHelper 객체를 만들때 ItemTouchHelper.SimpleCallback 객체를 변수로 사용한다.  
-이때, ItemTouchHelper.SimpleCallback 객체의 onMove 메소드를 구현해야 한다.  
-
+2️⃣```onMove(recyclerView, dragged, target)```  
+사용자가 아이템을 drag하면, ItemTouchHelper는 onMove()를 호출한다. 해당 Callback 함수를 받으면, 아이템을 기존 위치에서 새로운 위치로 이동시킬 수 있다. 또한, item이 이동했다는 것을 알려 주기위해 adapter의 notifyItemMoved(fromPosition, toPosition)를 호출해야한다.  
 ```kotlin
-touchHelper = ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP or ItemTouchHelper.DOWN, 0){
-	
-	override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
-		val fromPosition : Int = viewHolder.adapterPosition		// 이동하려는 view holder의 출발 인덱스
-		val toPosition : Int = target.adapterPosition			// 이동하려는 view holder의 도착 인덱스
-		Collections.swap(teamList, fromPosition, toPosition)
-		teamAdapter.notifyItemMoved(fromPosition, toPosition)	// Adapter에 알려준다.
-		return true
-	}
-})
+override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {  
+    return listener.onDragDrop(viewHolder.adapterPosition, target.adapterPosition)  
+}  
 ```
-
-Adapter 객체를 만들때 구현한 ItemTouchHelper 객체를 넘겨 주어, ItemTouchHelper를 Adapter에서 사용할 수 있게 한다.  
 ```kotlin
-teamAdapter = TeamAdapter(this, teamList, touchHelper)
+override fun onDragDrop(fromPosition: Int, toPosition: Int) : Boolean{  
+    val moveData = data[fromPosition]  
+    data.removeAt(fromPosition)  
+    data.add(toPosition, moveData)  
+  
+    notifyItemMoved(fromPosition, toPosition)  
+    return true  
+}  
 ```
-
-Adapter에서 setOnTouchListener 리스너 구현한다.
-리스너에서 ItemTouchHelper.SimpleCallback 객체의 startDrag()를 호출하여 드래그를 시작하도록 시스템에 지시한다.
-리스너에서 false를 반환하면, 시스템에서 작업 유형이 ACTION_DRAG_ENDED인 드래그 이벤트를 보낼 때까지 현재 작업의 드래그 이벤트를 받지 않는다.
-```kotlin 
-holder.move.setOnTouchListener { _, event ->
-	if (event.action == MotionEvent.ACTION_DOWN) {
-		touchHelper.startDrag(holder)
-	}
-	false
+3️⃣```onSwiped(ViewHolder, int)```  
+사용자가 item을 swipe하면, ItemTouchHelper는 onSwiped()를 호출한다.해당 Callback 함수를 받으면, 원하는 동작을 시킬 수 있다. 또한, 원하는 동작에 맞는 notifyEVENT()를 호출해야한다.   
+ ```kotlin 
+override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {  
+    listener.onSwipe(viewHolder.adapterPosition)  
 }
 ```
-## 🚉Item View를 swipe로 삭제하기
-
-Item View를 삭제하기 위해서 ItemTouchHelper 객체를 만들어야 한다.
-ItemTouchHelper 객체를 만들때 ItemTouchHelper.SimpleCallback 객체를 변수로 사용한다.
-이때, ItemTouchHelper.SimpleCallback 객체의 onSwiped 메소드를 구현해야 한다.
-
 ```kotlin
-touchHelper = ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP or ItemTouchHelper.DOWN, 0){
-	
-	override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-		teamList.removeAt(viewHolder.layoutPosition)				// 삭제하려는 view holder의 인덱스
-		teamAdapter.notifyItemRemoved(viewHolder.layoutPosition)	// Adapter에 알려준다.
-	}
-})
+override fun onSwipe(position: Int) {  
+    data.removeAt(position)  
+    notifyItemRemoved(position)  
+}
 ```
+#### 구현
+이동 및 삭제를 구현하기 위한** interface**를 만든다.  
+```kotlin
+interface ItemTouchListener{
+    fun onDragDrop(fromPosition : Int, toPosition : Int) : Boolean
+    fun onSwipe(position : Int)
+}  
+```
+ItemTouchHelper.Callback() 상속받고, 해당 함수들을 구현하는 클래스를 만든다.  
+```kotlin
+class ItemTouchCallback (private val listener : ItemTouchListener) : ItemTouchHelper.Callback(){  
+    override fun getMovementFlags(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder): Int {  
+        return makeMovementFlags(  
+                ItemTouchHelper.UP or ItemTouchHelper.DOWN or 
+                 ItemTouchHelper.START or ItemTouchHelper.END,  
+				ItemTouchHelper.START or ItemTouchHelper.END  
+        )  
+    }  
+  
+    override fun onMove(recyclerView: RecyclerView, 
+					    viewHolder: RecyclerView.ViewHolder, 
+		                target: RecyclerView.ViewHolder): Boolean {  
+        return listener.onDragDrop(viewHolder.adapterPosition, target.adapterPosition)  
+    }  
+  
+    override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {  
+        listener.onSwipe(viewHolder.adapterPosition)  
+    }  
+}
+```
+**Adapter**에서 interface를 상속받아 해당 메소드를  구현한다.   
+```kotlin
+class TeamAdapter (private val context : Context) : RecyclerView.Adapter<TeamViewHolder>(), ItemTouchListener {
+	lateinit var touchHelper : ItemTouchHelper // adapter를 먼저 만들고, 그 이후에 touchHelper를 정의해준다.
+    // ...
+    
+    override fun onDragDrop(fromPosition: Int, toPosition: Int) : Boolean{  
+        val moveData = data[fromPosition]  
+        data.removeAt(fromPosition)  
+        data.add(toPosition, moveData)  
+  
+        notifyItemMoved(fromPosition, toPosition)  
+        return true  
+  }  
+  
+    override fun onSwipe(position: Int) {  
+        data.removeAt(position)  
+        notifyItemRemoved(position)  
+    }  
+}
+```
+RecyclerView가 있는 Activity에서 adapter의 touchHelper를 정의해준다.  
+이후, 해당 touchHelper를 RecyclerView에 연결시킨다.  
+```kotlin
+teamAdapter = TeamAdapter(this)
+teamAdapter.touchHelper = ItemTouchHelper(ItemTouchCallback(teamAdapter))
+teamAdapter.touchHelper.attachToRecyclerView(rcv_teamList_team)
+```
+
+
+
+
