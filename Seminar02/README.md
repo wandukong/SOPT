@@ -191,7 +191,7 @@ interface ItemTouchListener{
     fun onSwipe(position : Int)
 }  
 ```
-**ItemTouchHelper.Callback()**을 상속받고, 해당 함수들을 구현하는 클래스를 만든다.  
+**ItemTouchHelper.Callback()** 을 상속받고, 해당 함수들을 구현하는 클래스를 만든다.  
 ```kotlin
 class ItemTouchCallback (private val listener : ItemTouchListener) : ItemTouchHelper.Callback(){  
     override fun getMovementFlags(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder): Int {  
