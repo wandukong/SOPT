@@ -235,7 +235,7 @@ class TeamAdapter (private val context : Context) : RecyclerView.Adapter<TeamVie
 }
 ```
 RecyclerView가 있는 Activity에서 adapter의 touchHelper를 정의해준다.  
-이후, **attachToRecyclerView()**로 해당 touchHelper를 RecyclerView에 연결시킨다.  
+이후, **attachToRecyclerView()** 로 해당 touchHelper를 RecyclerView에 연결시킨다.  
 ```kotlin
 teamAdapter = TeamAdapter(this)
 teamAdapter.touchHelper = ItemTouchHelper(ItemTouchCallback(teamAdapter))
