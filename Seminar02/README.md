@@ -1,5 +1,5 @@
 # 📣Seminar02
-**작성일자 : 2020.10.19**  
+**작성일자 : 2020.10.28**  
 **1. RecyclerView**   
  
 ## 📱결과 화면
@@ -58,7 +58,8 @@ class SampleAdapter (private val context : Context) : RecyclerView.Adapter<Sampl
     var data = mutableListOf<SampleData>()  
   
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SampleViewHolder {  
-        val view = LayoutInflater.from(context).inflate(R.layout.sample_item_list, parent, false)  // xml파일을 토대로 view 객체를 생성한다. 
+        val view = LayoutInflater.from(context).inflate(R.layout.sample_item_list, parent, false)  
+		// xml파일을 토대로 view 객체를 생성한다. 
         return SampleViewHolder(view)  
     }  
   
@@ -128,14 +129,15 @@ fun onBind(data : TeamData) {
     }
 ```
 
-## 🚉Touch Helpr를 통한 Item View 이동 및 삭제
+## 🚝Touch Helpr를 통한 Item View 이동 및 삭제
 
 
 #### ItemTouchHelper
 ItemTouchHelper는 RecyclerView의 swipe 및 drag & drop 기능들을 지원하기 위한 클래스이다. RecyclerView와  Callback class와 같이 작동한다.   
 
 #### ItemTouchHelper.Callback
-사용자의 어떤 이벤트를 받을 것이고, 그에 대응되는 어떤 작업을 할 것인지 정의된다.  즉, view holder마다 어떤 터치 동작을 유효하게 할지를 제어하고, 사용자가 해당 터치를 했을 때, 해당 동작에 맞는 콜백 함수들을 받는다.   
+사용자의 어떤 이벤트를 받을 것이고, 그에 대응되는 어떤 작업을 할 것인지 정의된다.  
+즉, view holder마다 어떤 터치 동작을 유효하게 할지를 제어하고, 사용자가 해당 터치를 했을 때, 해당 동작에 맞는 콜백 함수들을 받는다.   
 
 1️⃣``getMovementFlags(RecyclerView, ViewHolder)``  
 사용자 수행한 터치 동작을 제어하기 위해 getMovementFlags(RecyclerView, ViewHolder)를 재정의하고 적절한 방향 플래그 집합(START, END, UP, DOWN)을 반환해야 한다. makeMovementFlags(int, int)를 사용하여 쉽게 구성할 수 있다.   
@@ -148,7 +150,9 @@ override fun getMovementFlags(recyclerView: RecyclerView, viewHolder: RecyclerVi
 }
 ```
 2️⃣```onMove(recyclerView, dragged, target)```  
-사용자가 아이템을 drag하면, ItemTouchHelper는 onMove()를 호출한다. 해당 Callback 함수를 받으면, 아이템을 기존 위치에서 새로운 위치로 이동시킬 수 있다. 또한, item이 이동했다는 것을 알려 주기위해 adapter의 notifyItemMoved(fromPosition, toPosition)를 호출해야한다.  
+사용자가 아이템을 drag하면, ItemTouchHelper는 onMove()를 호출한다.   
+해당 Callback 함수를 받으면, 아이템을 기존 위치에서 새로운 위치로 이동시킬 수 있다.   
+또한, item이 이동했다는 것을 알려 주기위해 adapter의 notifyItemMoved(fromPosition, toPosition)를 호출해야한다.   
 ```kotlin
 override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {  
     return listener.onDragDrop(viewHolder.adapterPosition, target.adapterPosition)  
@@ -165,7 +169,9 @@ override fun onDragDrop(fromPosition: Int, toPosition: Int) : Boolean{
 }  
 ```
 3️⃣```onSwiped(ViewHolder, int)```  
-사용자가 item을 swipe하면, ItemTouchHelper는 onSwiped()를 호출한다.해당 Callback 함수를 받으면, 원하는 동작을 시킬 수 있다. 또한, 원하는 동작에 맞는 notifyEVENT()를 호출해야한다.   
+사용자가 item을 swipe하면, ItemTouchHelper는 onSwiped()를 호출한다.  
+해당 Callback 함수를 받으면, 원하는 동작을 시킬 수 있다.  
+또한, 원하는 동작에 맞는 notifyEVENT()를 호출해야한다.   
  ```kotlin 
 override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {  
     listener.onSwipe(viewHolder.adapterPosition)  
