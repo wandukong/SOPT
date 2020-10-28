@@ -184,14 +184,14 @@ override fun onSwipe(position: Int) {
 }
 ```
 #### 구현
-이동 및 삭제를 구현하기 위한** interface**를 만든다.  
+이동 및 삭제를 구현하기 위한 **interface**를 만든다.  
 ```kotlin
 interface ItemTouchListener{
     fun onDragDrop(fromPosition : Int, toPosition : Int) : Boolean
     fun onSwipe(position : Int)
 }  
 ```
-ItemTouchHelper.Callback() 상속받고, 해당 함수들을 구현하는 클래스를 만든다.  
+**ItemTouchHelper.Callback()**을 상속받고, 해당 함수들을 구현하는 클래스를 만든다.  
 ```kotlin
 class ItemTouchCallback (private val listener : ItemTouchListener) : ItemTouchHelper.Callback(){  
     override fun getMovementFlags(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder): Int {  
@@ -235,7 +235,7 @@ class TeamAdapter (private val context : Context) : RecyclerView.Adapter<TeamVie
 }
 ```
 RecyclerView가 있는 Activity에서 adapter의 touchHelper를 정의해준다.  
-이후, 해당 touchHelper를 RecyclerView에 연결시킨다.  
+이후, **attachToRecyclerView()**로 해당 touchHelper를 RecyclerView에 연결시킨다.  
 ```kotlin
 teamAdapter = TeamAdapter(this)
 teamAdapter.touchHelper = ItemTouchHelper(ItemTouchCallback(teamAdapter))
