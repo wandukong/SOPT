@@ -4,11 +4,11 @@
  
 ## 📱결과 화면
 <p float="left">
-	<img src="https://user-images.githubusercontent.com/47289479/97446628-f9ed2800-1971-11eb-8bde-31e34b87dfb0.gif" width="200" height="330"/>
-	<img src="https://user-images.githubusercontent.com/47289479/97446705-17ba8d00-1972-11eb-80d9-884ad26e96b3.gif" width="200" height="330"/>
-	<img src="https://user-images.githubusercontent.com/47289479/97446752-2739d600-1972-11eb-9096-679b3463345a.gif" width="200" height="330"/>
+	<img src="https://user-images.githubusercontent.com/47289479/97446628-f9ed2800-1971-11eb-8bde-31e34b87dfb0.gif" width="240" height="400"/>
+	<img src="https://user-images.githubusercontent.com/47289479/97446705-17ba8d00-1972-11eb-80d9-884ad26e96b3.gif" width="240" height="400"/>
+	<img src="https://user-images.githubusercontent.com/47289479/97446752-2739d600-1972-11eb-9096-679b3463345a.gif" width="240" height="400"/>
 </p>
-①아이템 이동　　　　　　　　　　　　  　②아이템 삭제　　　　　　　　　　　　 ③레이아웃 변경　　　　　　　　　
+①아이템 이동　　　　　　　　　　　②아이템 삭제　　　　　　　　　　③레이아웃 변경　　　　　　　　　
 
 ## 🚗Data Class
 RecyclervView의 각 리스트마다 필요한 데이터를 담을 **data class**를 만든다.  
