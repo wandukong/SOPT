@@ -50,7 +50,6 @@ class HomeActivity : AppCompatActivity() {
 
         teamAdapter = TeamAdapter(this)
         teamAdapter.touchHelper = ItemTouchHelper(ItemTouchCallback(teamAdapter))
-
         teamAdapter.data = teamList
 
         rcv_teamList_team.apply {

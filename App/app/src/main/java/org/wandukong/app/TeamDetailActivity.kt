@@ -12,9 +12,10 @@ class TeamDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_project_detail)
 
-        tv_title_project_detail.setText(intent.getStringExtra("title"))
-        tv_subtitle_project_detail.setText(intent.getStringExtra("subTitle"))
-        tv_date_poject_detail.setText(intent.getStringExtra("date"))
-        tv_detail_project_detail.setText(intent.getStringExtra("detail"))
+        var team = intent.getParcelableExtra<TeamData>("team")
+        tv_title_project_detail.text = team.title
+        tv_subtitle_project_detail.text= team.subTitle
+        tv_date_poject_detail.text =  team.date
+        tv_detail_project_detail.text = team.detail
     }
 }

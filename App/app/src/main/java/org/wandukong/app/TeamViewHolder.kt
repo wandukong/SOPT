@@ -18,13 +18,9 @@ class TeamViewHolder (itemView : View) : RecyclerView.ViewHolder(itemView) {
 
         itemView.setOnClickListener {
             var intent = Intent(itemView.context, TeamDetailActivity::class.java)
-
-            intent.putExtra("title", data.title)
-            intent.putExtra("subTitle", data.subTitle)
-            intent.putExtra("date", data.date)
-            intent.putExtra("detail", data.detail)
-
+            intent.putExtra("team", data)
             itemView.context.startActivity(intent)
         }
+
     }
 }

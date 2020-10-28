@@ -2,6 +2,7 @@ package org.wandukong.app
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
@@ -41,6 +42,7 @@ class TeamAdapter (private val context : Context) : RecyclerView.Adapter<TeamVie
     @SuppressLint("ClickableViewAccessibility")
     override fun onBindViewHolder(holder: TeamViewHolder, position: Int) {
         holder.onBind(data[position])
+
         holder.dragIcon.setOnTouchListener { _, event ->
             if (event.action == MotionEvent.ACTION_DOWN) {
                 touchHelper.startDrag(holder)

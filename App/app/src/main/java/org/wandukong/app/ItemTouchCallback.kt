@@ -7,7 +7,7 @@ class ItemTouchCallback (private val listener : ItemTouchListener) : ItemTouchHe
     override fun getMovementFlags(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder): Int {
         return makeMovementFlags(
                 ItemTouchHelper.UP or ItemTouchHelper.DOWN or ItemTouchHelper.START or ItemTouchHelper.END,
-                ItemTouchHelper.START or ItemTouchHelper.END
+                    ItemTouchHelper.START or ItemTouchHelper.END
         )
     }
 
