@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_home"
+        android:icon="@drawable/ic_baseline_home_24"
+        android:checked="false"
+        android:title="Home"/>
+    <item
+        android:id="@+id/menu_search"
+        android:icon="@drawable/ic_baseline_search_24"
+        android:checked="false"
+        android:title="Search"/>
+    <item
+        android:id="@+id/menu_camera"
+        android:icon="@drawable/ic_baseline_camera_alt_24"
+        android:checked="false"
+        android:title="Camera"/>
+</menu>
