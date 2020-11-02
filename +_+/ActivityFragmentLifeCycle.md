@@ -1,3 +1,6 @@
+
+<img src="https://user-images.githubusercontent.com/47289479/97892017-da3f7080-1d72-11eb-9b18-0734802ed420.png" width="600" height="700"/>
+
 # ⏰액티비티 생명주기(Activity Life Cycle)
 
 ## ✨onCreate()
@@ -169,8 +172,8 @@ Activity가 종료되는 경우 **onDestroy()** 는 **Activity가 수신하는 �
 
 **onDestroy()** callback은 이**전의 callback에서 아직 해제되지 않은 모든 리소스(예: onStop())를 해제해야 한다.**  
 
+<br/>
 <hr />
-
 
 # ⌚프래그먼트 생명주기(Fragment Life Cycle)
 
