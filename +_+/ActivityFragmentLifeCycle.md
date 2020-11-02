@@ -172,7 +172,7 @@ Activity가 종료되는 경우 **onDestroy()** 는 **Activity가 수신하는 �
 
 **onDestroy()** callback은 이**전의 callback에서 아직 해제되지 않은 모든 리소스(예: onStop())를 해제해야 한다.**  
 
-<br/>
+<br />
 <hr />
 
 # ⌚프래그먼트 생명주기(Fragment Life Cycle)
@@ -237,7 +237,10 @@ Fragment가 backStack으로 들어간다.
 ## ✂onDetach()
 **Fragment가 Activity로부터 해제될 때 호출**된다.  
 
-# 실행순서 
+<br />
+<hr />
+
+# ⏳실행순서 
 ```
 Fragment onAttach() → Fragment onCreate() → Fragment onCreateView() → Fragment onViewCreated() →  
 Activity onCreate() → Fragment onActivityCreated()  
