@@ -168,3 +168,96 @@ Activity가 종료되는 경우 **onDestroy()** 는 **Activity가 수신하는 �
 새로운 구성에서 그 새로운 인스턴스에 관해**  **onCreate()** 를 **호출**합니다.  
 
 **onDestroy()** callback은 이**전의 callback에서 아직 해제되지 않은 모든 리소스(예: onStop())를 해제해야 한다.**  
+
+<hr />
+
+
+# ⌚프래그먼트 생명주기(Fragment Life Cycle)
+
+## 🔗onAttach()
+**Fragment가 Activity에 연결될 때** 호출된다.  
+
+## ✨onCreate()
+**프래그먼트를 생성할 때** 시스템에서 호출한다.  
+구현 내에서 프래그먼트의 기본 구성 요소 중 프래그먼트가 일시정지되거나 중단되었다가 재개되었을 때 유지하고자 하는 것을 초기화해야 한다.  
+UI는 초기화할 수 없다.  
+
+## ✨onCreateView()
+**시스템이 프래그먼트의 인터페이스를 처음으로 그릴 때** 호출한다.   
+**프래그먼트와 연결된 뷰 계층을 생성하기 위해 호출**된다.  
+프래그먼트에 맞는 UI를 그리려면 메서드에서 view를 반환해야 한다. 프래그먼트가 UI를 제공하지 않는 경우 null을 반환하면 된다.  
+view 객체를 얻을 수 있으므로, view를 초기화 할 수 있다.   
+그러나, 몇몇 뷰들이 초기화 되지 않을 수 있기 때문에 findViewById를 사용하여 초기화 하면 안된다.    
+
+## ✨onViewCreated()
+**view가 완전히 생성되었을 때** 호출된다.   
+**findViewById를 사용하여 초기화 가능**하다.   
+Activity의 onCreate()에서 해왔던 작업들을 Fragment는 해당 메서드에서 한다.    
+
+## ✨onActivityCreated()
+**Fragment에서의 onCreateView를 마치고, Activity에서 onCreate()가 호출되고** 나서 호출된다.  
+Activity와 Fragment의 view가 모두 생성된 상태로, view를 변경하는 작업이 가능하다.   
+ 
+## 🔫onStart()
+**Fragment가 사용자에게 보여지기 바로 직전에 호출**된다.    
+이 callback에서는 UI를 관리하는 코드를 초기화한다.    
+Fragment에서 onStart()가 호출되고 난 후에, Activity의 onStart()가 호출된다.  
+ 
+## ▶onResume()
+**사용자에게 해당 Fragment가 보이고, 상호작용이 가능**하다.  
+어떤 이벤트가 발생하여 포커스가 떠날 때까지 이 상태에 머무른다.  
+프로그램이 일시정지되어 onPause()를 호출하고, 다시 재개되면 onResume() 메서드를 다시 호출한다.  
+재개 상태로 전환될때마다 필요한 초기화 작업들을 수행해야 한다.  
+Activity의 onResume()이 호출되고, Fragment의 onResume()이 실행된다.   
+
+## ⏸onPause()
+**해당 Fragment의 포커스를 잃고, 다른 Fragment가 보여지는 경우** 호출된다.    
+Fragment가 backStack으로 들어간다.     
+ 
+## ⏹onStop()
+**Fragment의 호스트 Activity가 포커스를 잃고, 다른 Activity가 호스트 Activity를 완전히 가려서 보이지 않는 경우** 호출된다.    
+
+## 🎊onDestroyView()
+**Fragment와 관련된 View가 제거될 때 호출**된다.  
+이 메소드가 호출된 이후 Fragment가 BackStack에서 돌아오면 onCreateView()가 호출된다.  
+해당 callback이 호출된 후에, Activity의 onDestroy()가 호출된다.  
+```
+※ 백스택
+액티비티가 아닌 프래그먼트로 구성할 때는 별도의 뒤로가기 처리를 해줘야 함. 
+그렇지 않으면 직전 프래그먼트로 가지 않고 바로 종료될 수 있음.
+```
+
+## 🎊onDestroy()
+**Activity를 완전히 닫거나 구성변경으로 인해(기기회전 또는 멀티 윈도우 모드) 시스템이 일시적으로 소멸시키는 경우**에도 호출 된다.   
+여기에서는 이전 콜백 메서드에서 해제되지 않은 리소스들을 해제해야 합니다.   
+
+## ✂onDetach()
+**Fragment가 Activity로부터 해제될 때 호출**된다.  
+
+# 실행순서 
+```
+Fragment onAttach() → Fragment onCreate() → Fragment onCreateView() → Fragment onViewCreated() →  
+Activity onCreate() → Fragment onActivityCreated()  
+```
+→  
+```
+Fragment onStart() → Activity onStart()  
+```
+→  
+```
+Activity onResume() → Fragment onResume()  
+```
+→  
+```
+Fragment onPause() → Activity onPause()  
+```
+→  
+```
+Fragment onStop() → Activity onStop()  
+```
+→  
+```
+Fragment onDestroyView() → Fragment onDestroy() → Fragment onDetach() → Activity onDestroy()  
+```
+
+
