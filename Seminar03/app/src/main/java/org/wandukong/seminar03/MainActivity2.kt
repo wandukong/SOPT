@@ -16,11 +16,6 @@ class MainActivity2 : AppCompatActivity() {
         setContentView(R.layout.activity_main2)
 
         viewPagerAdapter = ViewPagerAdapter(supportFragmentManager)
-        viewPagerAdapter.fragmentList = listOf(
-            FirstFragment(),
-            SecondFragment(),
-            ThirdFragment()
-        )
         vp_sample.adapter = viewPagerAdapter
 
         bnvg_sample.setOnNavigationItemSelectedListener {

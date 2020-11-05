@@ -9,8 +9,12 @@ class ViewPagerAdapter (fm : FragmentManager)
 
     var fragmentList = listOf<Fragment>()
 
-    override fun getCount(): Int = fragmentList.size
+    override fun getCount(): Int = 3
 
-    override fun getItem(position: Int): Fragment = fragmentList[position]
-
+    override fun getItem(position: Int): Fragment = when(position){
+        0 -> FirstFragment()
+        1 -> SecondFragment()
+        2 -> ThirdFragment()
+        else -> throw IllegalStateException("Unexpected $position")
+    }
 }
