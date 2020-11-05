@@ -4,61 +4,71 @@ import android.app.Activity
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.ItemTouchHelper
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager.widget.ViewPager
 import kotlinx.android.synthetic.main.activity_home.*
+import org.wandukong.app.adapter.HomeViewPagerAdapter
+import org.wandukong.app.fragment.ProfileFragment
+import org.wandukong.app.fragment.TeamFragment
+import org.wandukong.app.fragment.TempFragment
+import kotlin.properties.Delegates
 
 class HomeActivity : AppCompatActivity() {
     private lateinit var member: SharedPreferences
-    private lateinit var teamAdapter: TeamAdapter
-    private var teamList = mutableListOf<TeamData>()
+    private lateinit var viewPagerAdapter: HomeViewPagerAdapter
+    private lateinit var name : String
+    private var bundle = Bundle()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
         checkAutoLogin()
-        createRecyclerView()
-
+        bundle.putString("name", name)      // ProfileFragment로 데이터 보내기
+        makeViewPager()
     }
 
     private fun checkAutoLogin(){
         member = getSharedPreferences("memberDB", MODE_PRIVATE)
+        name = member.getString("*LATEST*","").toString()
 
         if(intent.getBooleanExtra("autoLogin", false)){
-            Toast.makeText(this, "${member.getString("*LATEST*", "")}님 자동 로그인", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "${name}님 자동 로그인", Toast.LENGTH_SHORT).show()
         }else{
-            Toast.makeText(this, "${member.getString("*LATEST*", "")}님 로그인 성공", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "${name}님 로그인 성공", Toast.LENGTH_SHORT).show()
         }
     }
 
-    private fun createRecyclerView(){
-        teamList.add(TeamData("Manchester United", "Winner", "1878-03-05", "Red Devils"))
-        teamList.add(TeamData("Tottenham Hotspur", "Runner up", "1905-03-10", "Spurs"))
-        teamList.add(TeamData("Liverpool", "3rd", "1892-03-15", "Reds"))
-        teamList.add(TeamData("Manchester city", "4th", "1894-04-16", "Blues"))
-        teamList.add(TeamData("Chelsea", "5th", "1905-03-10", "The Blues"))
-        teamList.add(TeamData("Arsenal", "6th", "1886-10-01", "The Gunners"))
-        teamList.add(TeamData("Leicester city", "7th", "18884-01-01", "The Foxes"))
-        teamList.add(TeamData("Everton", "8th", "1878-01-01", "The Toffees"))
+    private fun makeViewPager(){
+        viewPagerAdapter = HomeViewPagerAdapter(supportFragmentManager, bundle)
+        vp_home.adapter = viewPagerAdapter
 
-        teamAdapter = TeamAdapter(this)
-        teamAdapter.touchHelper = ItemTouchHelper(ItemTouchCallback(teamAdapter))
-        teamAdapter.data = teamList
-
-        rcv_teamList_team.apply {
-            //layoutManager = GridLayoutManager(context, 3, RecyclerView.VERTICAL, false)
-            layoutManager = LinearLayoutManager(context)
-            adapter = teamAdapter
+        bnvg_home.setOnNavigationItemSelectedListener {
+            var index by Delegates.notNull<Int>()
+            when(it.itemId) {
+                R.id.menu_profile -> index = 0
+                R.id.menu_team -> index= 1
+                R.id.menu_temp -> index = 2
+            }
+            vp_home.currentItem = index
+            true
         }
-        teamAdapter.notifyDataSetChanged()
-        teamAdapter.touchHelper.attachToRecyclerView(rcv_teamList_team)
+
+        // 뷰페이저를 슬라이드 했을 때, 그에 대응되는 하단 탭 변경
+        vp_home.addOnPageChangeListener(object : ViewPager.OnPageChangeListener{
+            override fun onPageScrollStateChanged(state: Int) {}
+
+            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
+
+            override fun onPageSelected(position: Int) {
+                bnvg_home.menu.getItem(position).isChecked = true
+                // 나머지 값들은 알아서 false로 바뀜.
+            }
+        })
     }
 
     override fun onBackPressed() {  // 뒤로가기 버튼 막기
@@ -66,18 +76,12 @@ class HomeActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-
         menu?.add(Menu.NONE, Menu.FIRST, Menu.NONE, "LOG OUT")
-
-        var subMenu: Menu? = menu?.addSubMenu("SORT")
-        subMenu?.add(Menu.NONE, Menu.FIRST + 1, Menu.NONE, "List")
-        subMenu?.add(Menu.NONE, Menu.FIRST + 2, Menu.NONE, "Grid")
-
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item?.itemId) {
+        when (item.itemId) {
             Menu.FIRST -> {
                 val intent = Intent()
                 intent.putExtra("name", member.getString("*LATEST*", ""))
@@ -89,16 +93,7 @@ class HomeActivity : AppCompatActivity() {
 
                 finish()
             }
-            Menu.FIRST + 1 -> {
-                teamAdapter.viewType = 1
-                rcv_teamList_team.layoutManager = LinearLayoutManager(this)
-            }
-            Menu.FIRST + 2 -> {
-                teamAdapter.viewType = 2
-                rcv_teamList_team.layoutManager = GridLayoutManager(this, 3, RecyclerView.VERTICAL, false)
-            }
         }
         return super.onOptionsItemSelected(item)
     }
-
 }

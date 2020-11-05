@@ -1,16 +1,16 @@
-package org.wandukong.app
+package org.wandukong.app.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
-import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
+import org.wandukong.app.ItemTouchListener
+import org.wandukong.app.R
+import org.wandukong.app.TeamViewHolder
+import org.wandukong.app.model.TeamData
 
 class TeamAdapter (private val context : Context) : RecyclerView.Adapter<TeamViewHolder>(), ItemTouchListener {
 
@@ -21,13 +21,13 @@ class TeamAdapter (private val context : Context) : RecyclerView.Adapter<TeamVie
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TeamViewHolder {
         var view =  when(viewType){
             1 -> {
-                LayoutInflater.from(context).inflate(R.layout.project_item_list, parent, false)
+                LayoutInflater.from(context).inflate(R.layout.team_item_list, parent, false)
             }
             2 -> {
-                LayoutInflater.from(context).inflate(R.layout.project_item_list2, parent, false)
+                LayoutInflater.from(context).inflate(R.layout.team_item_list2, parent, false)
             }
             else -> {
-                LayoutInflater.from(context).inflate(R.layout.project_item_list, parent, false)
+                LayoutInflater.from(context).inflate(R.layout.team_item_list, parent, false)
             }
         }
         return TeamViewHolder(view)

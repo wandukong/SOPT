@@ -18,7 +18,7 @@
         app:srcCompat="@drawable/charlie" />
 
     <TextView
-        android:id="@+id/tv_title_project_detail"
+        android:id="@+id/tv_title_team_detail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
@@ -29,7 +29,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
     <TextView
-        android:id="@+id/tv_subtitle_project_detail"
+        android:id="@+id/tv_subtitle_team_detail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
@@ -40,24 +40,24 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
     <TextView
-        android:id="@+id/tv_date_poject_detail"
+        android:id="@+id/tv_date_team_detail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:text="TextView"
         android:textSize="15sp"
         android:textColor="@color/yellow"
-        app:layout_constraintStart_toStartOf="@+id/tv_title_project_detail"
-        app:layout_constraintTop_toBottomOf="@+id/tv_title_project_detail" />
+        app:layout_constraintStart_toStartOf="@+id/tv_title_team_detail"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title_team_detail" />
 
     <TextView
-        android:id="@+id/tv_detail_project_detail"
+        android:id="@+id/tv_detail_team_detail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:text="TextView"
         android:textColor="@color/yellow"
         android:textSize="15sp"
-        app:layout_constraintStart_toStartOf="@+id/tv_date_poject_detail"
-        app:layout_constraintTop_toBottomOf="@+id/tv_date_poject_detail" />
+        app:layout_constraintStart_toStartOf="@+id/tv_date_team_detail"
+        app:layout_constraintTop_toBottomOf="@+id/tv_date_team_detail" />
 </androidx.constraintlayout.widget.ConstraintLayout>
