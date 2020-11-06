@@ -101,10 +101,11 @@ tv_name_profile.text = name
 #### Adapter 생성
 ViewPagerAdapter의 역할을 하기 위해 **FragmentStatePagerAdapter를 상속**을 받는다.  
 |FragmentStatePagerAdapter  | FragmentPagerAdapter |
-|--|--|
+|:--:|:--:|
 | 양 옆 프래그먼트를 제외한 나머지 완전히 파괴 | 프래그먼트의 인스턴스를 완전히 파괴 X |
 | 보여지는 화면 기준 | onDestroyView()만 호출|
-| 메모리 누수 관리에 효과적| 프래그먼트 개수가 고정적일 때 효과적|    
+| 메모리 누수 관리에 효과적| 프래그먼트 개수가 고정적일 때 효과적|  
+	
 FragmentStatePagerAdapter를 상속받았으므로, **getCount()를 getItem() override** 해준다.     
 ViewPagerAdapter는 **FragmentManager를 필요**로 한다.      
 
