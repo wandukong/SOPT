@@ -7,9 +7,9 @@
  
 ## 📱결과 화면
 <p float="left">
-	<img src="" width="300" height="495"/>
+	<img src="https://user-images.githubusercontent.com/47289479/98323301-d9396800-202c-11eb-8d2b-580823236c0f.gif" width="300" height="495"/>
 </p>
-①아이템 이동　　　　　　　　　　　　  　②아이템 삭제　　　　　　　　　　　　 ③레이아웃 변경　　　　　　　　　
+BottomNavigationView & TabLayout　　　　　　　
 
 ## 🍇Fragment
 Fragment는 하나의 액티비티가 **여러 개의 화면**을 가지도록 만들기 위해 고안된 개념이다.  
@@ -19,7 +19,7 @@ Fragment는 하나의 액티비티가 **여러 개의 화면**을 가지도록 �
 액티비티 내에서 실행 중에 추가, 제거, 변경이 가능하다.  
 Activity에서 Fragment를 관리하기 위해서 **Fragment Manager**가 필요하다.  
 
-### Fragment Transaction
+#### Fragment Transaction
 Fragment Manager의 역할 중 하나이다.   
 Activity에서 Fragment 를 추가, 변경, 삭제 작업을 수행 한다.   
 수행한 transaction의 상태를 BackStack에 저장 가능하다.    
@@ -35,7 +35,7 @@ val transaction = supportFragmentManager.beginTransaction()
 transaction.replace(R.id.fragment_container,fragment2)  
 ```
 
-### Fragement에서 또 하나의 View Pager 만들기
+#### Fragement에서 또 하나의 View Pager 만들기
 Activity에서 View Pager 인스턴스를 만들 경우, Fragment Manager 클래스로 **supportFragmentManager**를 보냈다.    
 ```kotlin
 viewPagerAdapter = HomeViewPagerAdapter(supportFragmentManager)
@@ -45,7 +45,7 @@ viewPagerAdapter = HomeViewPagerAdapter(supportFragmentManager)
 viewPagerAdapter = ProfileViewPagerAdapter(childFragmentManager)
 ```
 
-### 특정 Fragment에서만 option menu 추가하기
+#### 특정 Fragment에서만 option menu 추가하기
 특정 Fragment에서 option menu를 추가 하려면, oncreateView() callback 함수에서 **setHasOptionsMenu()** 메소드를 호출해야 한다.  
 ```kotlin
 setHasOptionsMenu(true)
@@ -61,7 +61,7 @@ override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
 }
 ```
 
-### Activity에서 Fragment로 데이터 보내기
+#### Activity에서 Fragment로 데이터 보내기
 Activity의 데이터를 특정 Fragement에서 사용하려면, **Bundle 객체를 만들고 보낼 데이터들을 put한다.**   
 이후, **Bundle 객체**를 **View Pager Adapter 인스턴스를 만들때** 보내준다.   
 ```kotlin
@@ -98,7 +98,7 @@ tv_name_profile.text = name
 하나의 화면 안에서 **여러가지 화면을 슬라이드 형식**으로 보여줄 때 사용한다.   
 주로 하단 탭(Bottom Navigation), 상단 탭(Tab Layout)과 연동하여 사용한다.   
 
-### Adapter 생성
+#### Adapter 생성
 ViewPagerAdapter의 역할을 하기 위해 **FragmentStatePagerAdapter를 상속**을 받는다.  
 |FragmentStatePagerAdapter  | FragmentPagerAdapter |
 |--|--|
@@ -130,7 +130,7 @@ class HomeViewPagerAdapter (fm : FragmentManager, val bundle: Bundle)
     }  
 }
 ```
-### Activity에 적용 
+#### Activity에 적용 
 View Pager를 적용할 Activity에 viewPagerAdapter 인스턴스를 만든 후, **ViewPager view에 적용**시킨다.  
 ```kotlin
 viewPagerAdapter = HomeViewPagerAdapter(supportFragmentManager, bundle)
@@ -142,7 +142,7 @@ vp_home.adapter = viewPagerAdapter
 View Pager와 연동하여 화면(page)들을 전환한다.    
 **화면이 3개 이상일 때** 사용하는 것을 권장한다.  
 
-### menu.xml 생성
+#### menu.xml 생성
 이름이 menu인 폴더를 만들고, xml 파일을 만든다.   
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -165,7 +165,7 @@ View Pager와 연동하여 화면(page)들을 전환한다.
 </menu>
 ```
 
-### selector.xml 생성
+#### selector.xml 생성
 menu selected 또는 unselected 일 경우 메뉴 **아이콘 색깔 변경**을 위한 xml 파일을 만든다.  
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -174,7 +174,7 @@ menu selected 또는 unselected 일 경우 메뉴 **아이콘 색깔 변경**을
     <item android:color="#9E9E9E" android:state_checked="false"/>
 </selector>
 ```
-### BottomNavigationView 생성
+#### BottomNavigationView 생성
 BottomNavigationView를 적용할 Activity xml에 추가한다.   
 ```xml
 <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -192,7 +192,7 @@ BottomNavigationView를 적용할 Activity xml에 추가한다.
         app:menu="@menu/menu" />							// menu item들의 tab으로 적용된다.
 ```
 
-### bottomNavigation view에 이벤트 Listener 설정
+#### bottomNavigation view에 이벤트 Listener 설정
 각 menu item을 터치했을 때에 대한 이벤트 Listener를 설정한다.   
 ```kotlin
 bnvg_home.setOnNavigationItemSelectedListener {
@@ -225,7 +225,7 @@ vp_home.addOnPageChangeListener(object : ViewPager.OnPageChangeListener{
 Tab menu를 만들고 싶은 경우 사용한다.    
 Bottom Navigation에 비해 **위치 이동이 자유로워, 하단 탭을 제외한 탭을 만들고 싶은 경우** 사용한다.   
 
-### TabLayout 생성
+#### TabLayout 생성
 ```kotlin
 <com.google.android.material.tabs.TabLayout
             android:id="@+id/tl_profile"
@@ -240,12 +240,12 @@ Bottom Navigation에 비해 **위치 이동이 자유로워, 하단 탭을 제�
 ```
 
 
-### TabLayout을 View Pager와 연동
+#### TabLayout을 View Pager와 연동
 ```kotlin
 tl_profile.setupWithViewPager(vp_profile)
 ```
 
-### TabLayout의 Tab title 설정
+#### TabLayout의 Tab title 설정
 각 Tab의 title을 설정한다.    
 반드시 **View Pager와 연동 후**, 설정해야 한다.    
 ```kotlin
