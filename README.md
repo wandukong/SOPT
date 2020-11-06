@@ -578,14 +578,14 @@ BottomNavigationView를 적용할 Activity xml에 추가한다.
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimaryDark"
-        app:itemIconTint="@color/bottom_navi_color"			// tab의 icon 색상
-        app:itemRippleColor="#FFEB3B"						// tab 터치할 때 물결 효과 색상
-        app:itemTextColor="@color/bottom_navi_color"  		// tab title 색상
-        app:labelVisibilityMode="selected"					// title 보여주는 경우 설정
+        app:itemIconTint="@color/bottom_navi_color"   // tab의 icon 색상
+        app:itemRippleColor="#FFEB3B"   // tab 터치할 때 물결 효과 색상
+        app:itemTextColor="@color/bottom_navi_color"   // tab title 색상
+        app:labelVisibilityMode="selected"   // title 보여주는 경우 설정
         app:layout_constraintBottom_toBottomOf="parent"		
         app:layout_constraintEnd_toEndOf="parent"		
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/menu" />							// menu item들의 tab으로 적용된다.
+        app:menu="@menu/menu" />   // menu item들의 tab으로 적용된다.
 ```
 
 ### bottomNavigation view에 이벤트 Listener 설정
@@ -631,7 +631,7 @@ Bottom Navigation에 비해 **위치 이동이 자유로워, 하단 탭을 제�
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:tabIndicatorColor="@color/yellow"		  // 인디케이터의 색 변경
+            app:tabIndicatorColor="@color/yellow"   // 인디케이터의 색 변경
             app:tabSelectedTextColor="@color/yellow" />   // 탭이 선택됐을 때 글자 색 변경
 ```
 
