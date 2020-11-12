@@ -1,11 +1,11 @@
 
-# Lifecycle (Handling Lifecycles with Lifecycle-Aware Components)
+# ♻Lifecycle (Handling Lifecycles with Lifecycle-Aware Components)
 
 Lifecycle-Aware Components는 Activity와 Fragment와 같은 다른 구성요소의 **생명 주기 상태 변경에 따른 액션을 수행**한다.    
 이러한 구성요소를 사용하면 잘 구성된 가벼운 코드를 만들어 더욱 쉽게 유지할 수 있다.  
 **androidx.lifecycle** 패키지는 Activity와 Fragment의 현재 생명 주기 상태를 기반으로 동작을 정의할 수 있는 components를 빌드할 수 있는 class 및 interface를 제공한다.  
 
-## Lifecycle
+## ⚽Lifecycle 클래스
 **Lifecycle**은 Activity와 Fragment와 같은 구성요소의 수명 주기 상태 관련 정보를 포함하며, 다른 객체가 이 상태를 확인할 수 있게 하는 클래스이다.  
 
 <img src="https://user-images.githubusercontent.com/47289479/98667878-6153a080-2392-11eb-9039-5d55bb82db65.png" width="800" hegiht="300"/>
@@ -30,7 +30,7 @@ Lifecycle-Aware Components는 Activity와 Fragment와 같은 다른 구성요소
 - STARTED   
 ```
 
-## LifecycleOwner
+## ⚾LifecycleOwner
 **Lifecycle Owner**는 클래스에 Lifecycle이 있음을 나타내는 단일 메서드 인터페이스이다.  
 즉, 자신의 생명주기를 담은 Lifecycle 객체가 LifecycleOnwer이다.    
 LifecycleOwner는 단일 method인 getLifecycle()을 가진다. (kotlin에서 **lifecycle**로 사용)    
@@ -65,7 +65,7 @@ class MainActivity : AppCompatActivity() {
 **isAtLeast()** 메소드는 현재 상태가 매개변수로 들어오는 상태 이후 인지 확인하여 true/false를 반환한다.  
  
 
-## Lifecycle Observer
+## 🏀Lifecycle Observer
 실제 Activity나 Fragment의 생명 주기 **event를 수신**한다.   
 수신 받은 생명 주기 **event에 따라 정의한 함수를 실행**시킬 수 있다.  
 Activity나 Fragment의 코드를 건드리지 않고 추가적인 작업을 수행할 수 있다.   
@@ -88,7 +88,7 @@ class MyObserver (private val context: Context, private val lifecycle : Lifecycl
 }
 ```
 
-## 실행화면
+## 🏈실행화면
 <p float="left">
 	<img src="https://user-images.githubusercontent.com/47289479/98671193-3a4b9d80-2397-11eb-8211-aa82dfd25a33.png" width="300" height="495"/>
 	<img src="https://user-images.githubusercontent.com/47289479/98671144-2607a080-2397-11eb-9132-a68423867009.png" width="300" height="495"/>
