@@ -36,13 +36,13 @@ class ProfileInfoFragment : Fragment() {
     }
 
     private fun createRecyclerView(view : View){
-        infoList.add(ProfileInfoData("Age", "27"))
-        infoList.add(ProfileInfoData("Birthday", "6, July"))
-        infoList.add(ProfileInfoData("Residence", "Ilsan"))
-        infoList.add(ProfileInfoData("Instagram", "_sxxngwxn"))
-        infoList.add(ProfileInfoData("Github", "wandukong"))
-        infoList.add(ProfileInfoData("Part", "Android"))
-        infoList.add(ProfileInfoData("Group", "E"))
+        infoList.add(ProfileInfoData("Age", "27", "숫자에 불과해"))
+        infoList.add(ProfileInfoData("Birthday", "6, July", "축하해주세요"))
+        infoList.add(ProfileInfoData("Residence", "Ilsan", "23년째 사는 중이에요"))
+        infoList.add(ProfileInfoData("Instagram", "_sxxngwxn", "팔로우 해주세요"))
+        infoList.add(ProfileInfoData("Github", "wandukong", "팔로우 해주세요"))
+        infoList.add(ProfileInfoData("Part", "Android", "안드로이드 파트 짱"))
+        infoList.add(ProfileInfoData("Group", "E","E조 모이자"))
 
         profileInfoAdapter = ProfileInfoAdapter(view.context)
         profileInfoAdapter.data = infoList

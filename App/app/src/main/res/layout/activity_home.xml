@@ -4,18 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000000"
     tools:context=".HomeActivity">
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bnvg_home"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryDark"
-        app:itemIconTint="@color/bottom_navi_color"
-        app:itemRippleColor="#FFEB3B"
-        app:itemTextColor="@color/bottom_navi_color"
-        app:labelVisibilityMode="selected"
+        android:layout_height="56dp"
+        android:background="#141414"
+        app:itemIconTint="@color/profile_selector"
+        app:itemRippleColor="@color/profile_selector"
+        app:itemTextColor="@color/profile_selector"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

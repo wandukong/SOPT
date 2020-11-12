@@ -6,5 +6,6 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class ProfileInfoData (
     val title : String,
-    val content : String
+    val content : String,
+    val detail : String
 ): Parcelable

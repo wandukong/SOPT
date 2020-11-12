@@ -4,17 +4,14 @@ import android.app.Activity
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
 import kotlinx.android.synthetic.main.activity_home.*
+import kotlinx.android.synthetic.main.activity_signup.*
 import org.wandukong.app.adapter.HomeViewPagerAdapter
-import org.wandukong.app.fragment.ProfileFragment
-import org.wandukong.app.fragment.TeamFragment
-import org.wandukong.app.fragment.TempFragment
 import kotlin.properties.Delegates
 
 class HomeActivity : AppCompatActivity() {
@@ -22,6 +19,7 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var viewPagerAdapter: HomeViewPagerAdapter
     private lateinit var name : String
     private var bundle = Bundle()
+    private val editTextEventListener = EditTextEventListener();
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
