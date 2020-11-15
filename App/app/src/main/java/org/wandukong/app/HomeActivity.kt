@@ -19,7 +19,6 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var viewPagerAdapter: HomeViewPagerAdapter
     private lateinit var name : String
     private var bundle = Bundle()
-    private val editTextEventListener = EditTextEventListener();
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

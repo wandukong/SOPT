@@ -1,10 +1,13 @@
 package org.wandukong.app
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MotionEvent
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_signup.*
@@ -52,5 +55,13 @@ class SignupActivity : AppCompatActivity() {
                 finish()
             }
         }
+    }
+
+    override fun dispatchTouchEvent(ev: MotionEvent?): Boolean { // editText focus 없어지면 키보드 숨기기
+        if (currentFocus != null) {
+            val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            inputMethodManager.hideSoftInputFromWindow(currentFocus!!.windowToken, 0)
+        }
+        return super.dispatchTouchEvent(ev)
     }
 }
