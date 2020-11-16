@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="iv_circle">
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="iv_rounded_square">
+        <item name="cornerSize">10%</item>
+    </style>
+
+    <style name="iv_corner_cut">
+        <item name="cornerSize">15dp</item>
+        <item name="cornerFamily">cut</item>
+    </style>
+
+    <style name="iv_diamond_cut">
+        <item name="cornerSize">75dp</item>
+        <item name="cornerFamily">cut</item>
+    </style>
+
+    <style name="iv_specific_cut">
+        <item name="cornerSizeTopRight">75dp</item>
+        <item name="cornerFamilyTopRight">cut</item>
+        <item name="cornerSizeBottomLeft">75dp</item>
+        <item name="cornerFamilyBottomLeft">cut</item>
+    </style>
+
+    <style name="iv_specific_rounded">
+        <item name="cornerSizeTopRight">75dp</item>
+        <item name="cornerFamilyTopRight">rounded</item>
+        <item name="cornerSizeBottomLeft">75dp</item>
+        <item name="cornerFamilyBottomLeft">rounded</item>
+    </style>
+</resources>
