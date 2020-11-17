@@ -67,3 +67,28 @@ override fun dispatchTouchEvent(ev: MotionEvent?): Boolean { //
     return super.dispatchTouchEvent(ev)  
 }
 ```
+
+
+## ✨클릭 시 Button 속성 변경하기
+Button을 눌렀을 때 Button의 Background, text 색깔 혹은 font를 바꾸고 싶은 경우,    
+아래와 같이 코드를 작성하면 된다.   
+```kotlin
+//변수에 font 불러오기 -> ResourcesCompat.getFont(context, resource)
+val applesdgothicBold = ResourcesCompat.getFont(view.context, R.font.applesdgothic_bold)   
+val applesdgothicRegular = ResourcesCompat.getFont(view.context, R.font.applesdgothic_regular)  
+
+button.setOnClickListener {  
+	if(buttonCheck){  
+	          button.setBackgroundResource(R.drawable.pick_unclick)　// background drawable 변경
+	          button.setTextColor(Color.parseColor("#929292"))　　　　// text color 변경
+	          button.typeface = applesdgothicRegular　　　　　　　　　　// font 변경
+	          buttonCheck = false  // 전역 변수
+
+	}else{  
+	          button.setBackgroundResource(R.drawable.pick_onclick)  
+	          button.setTextColor(Color.parseColor("#ffffff"))  
+	          button.typeface = applesdgothicBold  
+	          buttonCheck = true  
+	}  
+}
+```
