@@ -19,6 +19,11 @@ import androidx.core.widget.addTextChangedListener
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_signup.*
 import org.json.JSONArray
+import org.wandukong.app.model.SigninRequestData
+import org.wandukong.app.model.SigninResponseData
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 const val REQUEST_SIGNUP = 201;
 const val REQUEST_LOGIN = 202;
@@ -37,36 +42,35 @@ class MainActivity : AppCompatActivity() {
         val loginIntent = Intent(this, HomeActivity::class.java)
 
         if(member.contains("*LATEST*")){
-            loginIntent.putExtra("autoLogin",true)
             startActivityForResult(loginIntent, REQUEST_LOGIN)
         }
 
         btn_login_login.setOnClickListener {//TODO 로그인
 
-            var memberJson: String? = member.getString(et_id_login.text.toString(), null) // 아이디로 value를 가지고 온다.
-
-            var memberArray:JSONArray? = null // value를 담을 배열 ["이름", "비밀번호"]
-            if(memberJson != null){
-                memberArray = JSONArray(memberJson)
-                Log.e("result",memberArray.toString())
-            }
-
             if(et_id_login.text.toString().isNullOrBlank() || et_pw_login.text.toString().isNullOrBlank()) {    // 아이디 or 비밀번호 입력 x
                 Toast.makeText(this, "빈칸을 채워주세요.",Toast.LENGTH_SHORT).show()
-            }else if(memberArray == null){ // 아이디와 일치하는 정보 x
-                Toast.makeText(this, "아이디를 확인하세요.",Toast.LENGTH_SHORT).show()
-            }else if(et_pw_login.text.toString() != memberArray[1].toString()){ // 아이디에 맞는 비밀번호 x
-                Toast.makeText(this, "아이디와 비밀번호를 확인하세요.",Toast.LENGTH_SHORT).show()
-            }else{ // 로그인 성공
-                val preferencesEditor: SharedPreferences.Editor = member.edit()
+            }else{
+                val call : Call<SigninResponseData> = UserServiceImpl.service.signIn(
+                        SigninRequestData(email = et_id_login.text.toString(), password = et_pw_login.text.toString())
+                )
+                call.enqueue(object : Callback<SigninResponseData>{
+                    override fun onResponse(call: Call<SigninResponseData>, response: Response<SigninResponseData>) {
 
-                preferencesEditor.putString("*LATEST*",memberArray[0].toString())
-                preferencesEditor.commit()
+                        response.takeIf { response.isSuccessful }  // TODO 회원가입 성공
+                                ?.body()
+                                ?.let { signinData ->
 
-                loginIntent.putExtra("autoLogin",false)
-                loginIntent.putExtra("name", memberArray[0].toString())
+                                    val preferencesEditor: SharedPreferences.Editor = member.edit()
+                                    preferencesEditor.putString("*LATEST*", signinData.data.userName)
+                                    preferencesEditor.commit()
 
-                startActivityForResult(loginIntent, REQUEST_LOGIN)
+                                    startActivityForResult(loginIntent, REQUEST_LOGIN)
+
+                                } ?: UserServiceImpl.showError(this@MainActivity, response.errorBody())  // TODO 회원가입 실패
+                    }
+                    override fun onFailure(call: Call<SigninResponseData>, t: Throwable) {
+                    }
+                })
             }
         }
 
