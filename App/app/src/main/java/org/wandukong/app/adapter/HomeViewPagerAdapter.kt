@@ -5,8 +5,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 import org.wandukong.app.fragment.ProfileFragment
-import org.wandukong.app.fragment.TeamFragment
-import org.wandukong.app.fragment.TempFragment
+import org.wandukong.app.fragment.UsersFragment
+import org.wandukong.app.fragment.WebSearchFragment
 import java.lang.IllegalStateException
 
 class HomeViewPagerAdapter (fm : FragmentManager, val bundle: Bundle)
@@ -22,11 +22,11 @@ class HomeViewPagerAdapter (fm : FragmentManager, val bundle: Bundle)
                 return profileFragment
             }
             1 -> {
-                val teamFragment = TeamFragment()
-                return teamFragment
+                val userFragment = UsersFragment()
+                return userFragment
             }
             2 -> {
-                val tempFragment = TempFragment()
+                val tempFragment = WebSearchFragment()
                 return tempFragment
             }
             else -> throw IllegalStateException("Unexpected $position")

@@ -6,15 +6,13 @@ import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.MotionEvent
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_signup.*
-import okhttp3.ResponseBody
-import org.json.JSONObject
 import org.wandukong.app.model.SignupRequestData
 import org.wandukong.app.model.SignupResponseData
+import org.wandukong.app.service.UserServiceImpl
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -49,7 +47,7 @@ class SignupActivity : AppCompatActivity() {
                     override fun onResponse(call: Call<SignupResponseData>, response: Response<SignupResponseData>) {
                         response.takeIf {it.isSuccessful}
                             ?.body()
-                            ?.let{ signupData ->
+                            ?.let{
 
                                 val intent = Intent()
                                 intent.putExtra("email", et_id_signup.text.toString())

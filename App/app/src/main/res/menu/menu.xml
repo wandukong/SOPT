@@ -11,8 +11,8 @@
         android:checked="false"
         android:title="Team"/>
     <item
-        android:id="@+id/menu_temp"
-        android:icon="@drawable/ic_baseline_live_help_24"
+        android:id="@+id/menu_search"
+        android:icon="@drawable/ic_baseline_search_24"
         android:checked="false"
-        android:title="---"/>
+        android:title="Search"/>
 </menu>

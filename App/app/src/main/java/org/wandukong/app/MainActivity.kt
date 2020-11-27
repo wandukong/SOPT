@@ -4,23 +4,15 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextUtils
-import android.text.TextWatcher
-import android.util.Log
 import android.view.MotionEvent
 import android.view.inputmethod.InputMethodManager
-import android.widget.EditText
 import android.widget.Toast
-import androidx.core.widget.addTextChangedListener
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_signup.*
-import org.json.JSONArray
 import org.wandukong.app.model.SigninRequestData
 import org.wandukong.app.model.SigninResponseData
+import org.wandukong.app.service.UserServiceImpl
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -74,7 +66,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        btn_signup_login.setOnClickListener { //TODO  회원가입
+        tv_signup_login.setOnClickListener { //TODO  회원가입
             var intent = Intent(this, SignupActivity::class.java)
             startActivityForResult(intent, REQUEST_SIGNUP);
         }

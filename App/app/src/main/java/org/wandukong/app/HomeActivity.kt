@@ -6,6 +6,8 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.MotionEvent
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
@@ -49,7 +51,7 @@ class HomeActivity : AppCompatActivity() {
             when(it.itemId) {
                 R.id.menu_profile -> index = 0
                 R.id.menu_team -> index= 1
-                R.id.menu_temp -> index = 2
+                R.id.menu_search -> index = 2
             }
             vp_home.currentItem = index
             true
@@ -72,25 +74,11 @@ class HomeActivity : AppCompatActivity() {
         //super.onBackPressed()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menu?.add(Menu.NONE, Menu.FIRST, Menu.NONE, "LOG OUT")
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            Menu.FIRST -> {
-                val intent = Intent()
-                intent.putExtra("name", member.getString("*LATEST*", ""))
-                setResult(Activity.RESULT_OK, intent)
-
-                val preferencesEditor: SharedPreferences.Editor = member.edit()
-                preferencesEditor.remove("*LATEST*")
-                preferencesEditor.commit()
-
-                finish()
-            }
+    override fun dispatchTouchEvent(ev: MotionEvent?): Boolean { // editText focus 없어지면 키보드 숨기기
+        if (currentFocus != null) {
+            val inputMethodManager = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+            inputMethodManager.hideSoftInputFromWindow(currentFocus!!.windowToken, 0)
         }
-        return super.onOptionsItemSelected(item)
+        return super.dispatchTouchEvent(ev)
     }
 }

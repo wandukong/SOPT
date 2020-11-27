@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.WebSearchFragment" >
+
+    <EditText
+        android:id="@+id/et_query_search"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="5dp"
+        android:ems="10"
+        android:fontFamily="@font/roboto_regular"
+        android:inputType="textPersonName"
+        android:textColor="@color/black"
+        android:textSize="17sp"
+        app:layout_constraintEnd_toStartOf="@+id/btn_request_search"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_request_search"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/ic_baseline_search_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/et_query_search" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcv_response_search"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/btn_request_search"
+        app:layout_constraintStart_toStartOf="@+id/et_query_search"
+        app:layout_constraintTop_toBottomOf="@+id/et_query_search" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

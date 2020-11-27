@@ -9,28 +9,28 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import org.wandukong.app.ItemTouchListener
 import org.wandukong.app.R
-import org.wandukong.app.TeamViewHolder
-import org.wandukong.app.model.TeamData
+import org.wandukong.app.UsersViewHolder
+import org.wandukong.app.model.UserData
 
-class TeamAdapter (private val context : Context) : RecyclerView.Adapter<TeamViewHolder>(), ItemTouchListener {
+class UsersAdapter (private val context : Context) : RecyclerView.Adapter<UsersViewHolder>(), ItemTouchListener {
 
-    var data: MutableList<TeamData> = mutableListOf()
+    var data: MutableList<UserData> = mutableListOf()
     lateinit var touchHelper : ItemTouchHelper
-    var viewType = 0
+    var viewType = 1
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TeamViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UsersViewHolder {
         var view =  when(viewType){
             1 -> {
-                LayoutInflater.from(context).inflate(R.layout.team_item_list, parent, false)
+                LayoutInflater.from(context).inflate(R.layout.user_item_list, parent, false)
             }
             2 -> {
-                LayoutInflater.from(context).inflate(R.layout.team_item_list2, parent, false)
+                LayoutInflater.from(context).inflate(R.layout.user_item_list2, parent, false)
             }
             else -> {
-                LayoutInflater.from(context).inflate(R.layout.team_item_list, parent, false)
+                LayoutInflater.from(context).inflate(R.layout.user_item_list, parent, false)
             }
         }
-        return TeamViewHolder(view)
+        return UsersViewHolder(view)
     }
 
     override fun getItemViewType(position: Int): Int {
@@ -40,7 +40,7 @@ class TeamAdapter (private val context : Context) : RecyclerView.Adapter<TeamVie
     override fun getItemCount(): Int = data.size
 
     @SuppressLint("ClickableViewAccessibility")
-    override fun onBindViewHolder(holder: TeamViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: UsersViewHolder, position: Int) {
         holder.onBind(data[position])
 
         holder.dragIcon.setOnTouchListener { _, event ->

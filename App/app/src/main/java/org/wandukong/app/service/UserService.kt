@@ -1,13 +1,10 @@
-package org.wandukong.app
+package org.wandukong.app.service
 
 import android.content.Context
 import android.widget.Toast
 import okhttp3.ResponseBody
 import org.json.JSONObject
-import org.wandukong.app.model.SigninRequestData
-import org.wandukong.app.model.SigninResponseData
-import org.wandukong.app.model.SignupRequestData
-import org.wandukong.app.model.SignupResponseData
+import org.wandukong.app.model.*
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -27,5 +24,6 @@ interface UserService {
         @Body body : SigninRequestData
     ) : Call<SigninResponseData>
 
-
+    @GET("/api/users?page=2")
+    fun loadUsers() : Call<LoadUsersResponseData>
 }
