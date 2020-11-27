@@ -92,9 +92,9 @@ button.setOnClickListener {
 }
 ```
 
-## Floating Button
+## 🎈Floating Button
 <img src="https://user-images.githubusercontent.com/47289479/100472628-f7702080-311f-11eb-9781-b6193373a339.gif" width="300" height="495"/>
-Layout 위에 붕 떠있는 것 같은 Button을 Floating Button이라고 합니다.  
+Layout 위에 붕 떠있는 것 같은 Button을 Floating Button이라고 합니다.    
 ```xml
 <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btn_floatingButton"
