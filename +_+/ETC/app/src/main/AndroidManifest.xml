@@ -9,9 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ETC">
-        <activity android:name=".ShapeableImageView"></activity>
+        <activity android:name=".HideKeyboardUnfocused"></activity>
+        <activity android:name=".ShapeableImageView" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".HideKeyboardUnfocused">
+        <activity android:name=".FloatingButton">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
