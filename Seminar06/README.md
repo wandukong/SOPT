@@ -1,6 +1,5 @@
-
 # 📣Seminar06 서버 통신(Retrofit)
-작성일자 : 2020.11.29
+**작성일자 : 2020.11.29**
 
 ## 📱결과 화면
 
@@ -33,7 +32,7 @@ implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 ```
 
 ## ❤interface 생성
-API를 통한 request&response를 위해서 interface를 생성해준다.  
+API를 통한 request&response를 위해서 **interface**를 생성해준다.  
 ```kotlin
 interface UserService {  
     @Headers("Content-Type:application/json")  
@@ -56,7 +55,7 @@ interface UserService {
 ```
 
 #### URL에 파라미터 넣기
-@Query 어노테이션을 매개변수로 명시해줘야 한다.  
+**@Query** 어노테이션을 매개변수로 명시해줘야 한다.  
 ```kotlin
 @GET("/api/users")
 fun loadUsers(
@@ -74,13 +73,13 @@ interface WebService {
     ) : Call<WebSearchResponseData>  
 }
 ```
-@Headers는 기존 헤더들의 정보를 보내줄 때 사용한다.  
-메소드 안의 @Header는 주로 custom Header들을 보내줄 때 사용한다.    
+**@Headers**는 기존 헤더들의 정보를 보내줄 때 사용한다.  
+메소드 안의 **@Header**는 주로 custom Header들을 보내줄 때 사용한다.    
 (위 코드는 Authorization 헤더는 두 개중 한 개만 사용하면 된다.)   
 
 #### URL 다루기
-URL을 동적으로 부분 치환 하기 위하여 {}로 감싸서 정의해준다.  
-이후, @Path 어노테이션을 매개변수로 명시해줘야 한다.  
+URL을 동적으로 부분 치환 하기 위하여 **{}**로 감싸서 정의해준다.  
+이후, **@Path** 어노테이션을 매개변수로 명시해줘야 한다.  
 ```kotlin
 @GET("group/{id}/users")
 fun getUsers(
@@ -89,8 +88,8 @@ fun getUsers(
 ```
 
 ## 🧡구현체 만들기 (싱글톤으로)  
-객체를 한 번만 생성 후, 어디에서나 사용하기 위해 싱글톤으로 구현체를 만든다.  
-싱글톤 객체로 사용하기 위해서 object로 선언한다. 
+객체를 한 번만 생성 후, 어디에서나 사용하기 위해 **싱글톤**으로 구현체를 만든다.  
+싱글톤 객체로 사용하기 위해서 **object**로 선언한다. 
  
 ```kotlin
 object UserServiceImpl {
@@ -106,9 +105,9 @@ object UserServiceImpl {
 ```
 
 ## 💛Call & Callback
-Call 객체는 웹서버와 통신하여 response 값을 받아오는 객체이다.  
-Callback 객체는 웹서버와 통신하여 전달 받은 response를 가지고 어떠한 방식으로 처리할 것인지 정의하는 객체이다.  
-Call 객체를 생성한 후, 서버로부터 받은 response를 어떻게 처리할 것인지에 대한 Callback 함수를 object로 작성하여 enqueue()의 파라미터로 넘겨준다.  
+**Call** 객체는 웹서버와 통신하여 response 값을 받아오는 객체이다.  
+**Callback** 객체는 웹서버와 통신하여 전달 받은 response를 가지고 어떠한 방식으로 처리할 것인지 정의하는 객체이다.  
+Call 객체를 생성한 후, 서버로부터 받은 response를 어떻게 처리할 것인지에 대한 Callback 함수를 **object**로 작성하여 **enqueue()**의 파라미터로 넘겨준다.  
 ```kotlin
 // Call 객체 생성
 val call : Call<SigninResponseData> = UserServiceImpl.service.signIn(
