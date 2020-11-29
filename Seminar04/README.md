@@ -1,5 +1,5 @@
-# 📣Seminar04
-작성일자 : 2020.11.17
+# 📣Seminar04 Design
+**작성일자 : 2020.11.17**
 
 ## 🎨Drawable
 ### Shape Drawable
