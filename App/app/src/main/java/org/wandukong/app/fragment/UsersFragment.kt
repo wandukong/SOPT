@@ -54,7 +54,7 @@ class UsersFragment : Fragment() {
 
     private fun createRecyclerView(view : View){
 
-        val call : Call<LoadUsersResponseData> = UserServiceImpl.service2.loadUsers()
+        val call : Call<LoadUsersResponseData> = UserServiceImpl.service2.loadUsers(page = 2)
         call.enqueue(object : Callback<LoadUsersResponseData>{
             override fun onResponse(call: Call<LoadUsersResponseData>, response: Response<LoadUsersResponseData>) {
 

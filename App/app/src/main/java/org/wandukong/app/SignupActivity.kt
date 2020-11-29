@@ -45,19 +45,20 @@ class SignupActivity : AppCompatActivity() {
 
                 call.enqueue(object : Callback<SignupResponseData>{
                     override fun onResponse(call: Call<SignupResponseData>, response: Response<SignupResponseData>) {
+
                         response.takeIf {it.isSuccessful}
                             ?.body()
                             ?.let{
-
                                 val intent = Intent()
                                 intent.putExtra("email", et_id_signup.text.toString())
                                 intent.putExtra("password", et_pw_signup.text.toString())
                                 setResult(Activity.RESULT_OK, intent)
 
                                 finish()
-                            } ?: let{ // body() 가 null 이거나, request가 실패인 경우
-                            UserServiceImpl.showError(this@SignupActivity, response.errorBody())
-                        }
+                            }
+                            ?:let{ // body() 가 null 이거나, request가 실패인 경우
+                                UserServiceImpl.showError(this@SignupActivity, response.errorBody())
+                            }
                     }
                     override fun onFailure(call: Call<SignupResponseData>, t: Throwable) {
                     }

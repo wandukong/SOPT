@@ -2,9 +2,7 @@ package org.wandukong.app.service
 
 import org.wandukong.app.model.WebSearchResponseData
 import retrofit2.Call
-import retrofit2.http.GET
-import retrofit2.http.Headers
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface WebService {
 
@@ -14,6 +12,6 @@ interface WebService {
             @Query("query") query : String,
             @Query("sort") sort : String? = "accuracy",
             @Query("page") page : Int? = 1,
-            @Query("size") size : Int? = 10
+            @Query("size") size : Int? = 10,
     ) : Call<WebSearchResponseData>
 }

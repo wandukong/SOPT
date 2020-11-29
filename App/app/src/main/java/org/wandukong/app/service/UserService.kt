@@ -6,10 +6,7 @@ import okhttp3.ResponseBody
 import org.json.JSONObject
 import org.wandukong.app.model.*
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.Headers
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface UserService {
     @Headers("Content-Type:application/json")
@@ -24,6 +21,8 @@ interface UserService {
         @Body body : SigninRequestData
     ) : Call<SigninResponseData>
 
-    @GET("/api/users?page=2")
-    fun loadUsers() : Call<LoadUsersResponseData>
+    @GET("/api/users")
+    fun loadUsers(
+        @Query("page") page : Int
+    ) : Call<LoadUsersResponseData>
 }

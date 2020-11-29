@@ -27,6 +27,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:pressedTranslationZ="12dp"
-        android:src="@drawable/ic_baseline_list_24"/>
+        android:src="@drawable/ic_baseline_grid_on_24"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
