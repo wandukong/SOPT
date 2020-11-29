@@ -49,9 +49,9 @@ interface UserService {
     ) : Call<SigninResponseData>  
   
     @GET("/api/users")
-	fun loadUsers(
-		@Query("page") page : Int
-	) : Call<LoadUsersResponseData>
+    fun loadUsers(
+        @Query("page") page : Int
+    ) : Call<LoadUsersResponseData>
 }
 ```
 
@@ -59,9 +59,9 @@ interface UserService {
 @Query 어노테이션을 매개변수로 명시해줘야 한다.  
 ```kotlin
 @GET("/api/users")
-	fun loadUsers(  
-		@Query("page") page : Int  
-	) : Call<LoadUsersResponseData>
+    fun loadUsers(  
+        @Query("page") page : Int  
+    ) : Call<LoadUsersResponseData>
 }
 ```
 
@@ -71,8 +71,8 @@ interface WebService {
     @Headers("Authorization:KakaoAK 181f5e5c475eb6a7f7a4e535f7e8e783")  
     @GET("/v2/search/web")  
     fun webSearch(
-		@Header("Authorization") authorization : String
-	) : Call<WebSearchResponseData>  
+        @Header("Authorization") authorization : String
+    ) : Call<WebSearchResponseData>  
 }
 ```
 @Headers는 기존 헤더들의 정보를 보내줄 때 사용한다.  
@@ -85,7 +85,7 @@ URL을 동적으로 부분 치환 하기 위하여 {}로 감싸서 정의해준�
 ```kotlin
 @GET("group/{id}/users")
 fun getUsers(
-	@Path("id") id : Int
+    @Path("id") id : Int
 )
 ```
 
