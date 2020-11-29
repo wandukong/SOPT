@@ -9,7 +9,7 @@
 	<img src="https://user-images.githubusercontent.com/47289479/100543019-088c6f00-3291-11eb-962b-0a388cb09794.jpg" width="260" height="430"/>
 	<img src="https://user-images.githubusercontent.com/47289479/100543365-088d6e80-3293-11eb-8206-cf240eb52023.gif" width="260" height="430"/>
 </p>
-①Dummy 리스트 구현　　　　　②Kakao API web search 구현　　③전체 실행 
+①Dummy 리스트 구현　　　　　　　②Kakao API web search 구현　　　③전체 실행 
 
 ## 💼준비 사항
 #### 라이브러리 추가
@@ -48,9 +48,9 @@ interface UserService {
         @Body body : SigninRequestData  
     ) : Call<SigninResponseData>  
   
-    @GET("/api/users")  
-	fun loadUsers(  
-	    @Query("page") page : Int  
+    @GET("/api/users")
+	fun loadUsers(
+		@Query("page") page : Int
 	) : Call<LoadUsersResponseData>
 }
 ```
@@ -58,9 +58,9 @@ interface UserService {
 #### URL에 파라미터 넣기
 @Query 어노테이션을 매개변수로 명시해줘야 한다.  
 ```kotlin
-@GET("/api/users")  
+@GET("/api/users")
 	fun loadUsers(  
-	    @Query("page") page : Int  
+		@Query("page") page : Int  
 	) : Call<LoadUsersResponseData>
 }
 ```
@@ -70,7 +70,7 @@ interface UserService {
 interface WebService {  
     @Headers("Authorization:KakaoAK 181f5e5c475eb6a7f7a4e535f7e8e783")  
     @GET("/v2/search/web")  
-    fun webSearch(  
+    fun webSearch(
 		@Header("Authorization") authorization : String
 	) : Call<WebSearchResponseData>  
 }
@@ -121,7 +121,7 @@ call.enqueue(object : Callback<SigninResponseData>{
 				?.body() 
 				?.let { // body가 null이 아닌 경우
 				
-				} ?: UserServiceImpl.showError(this@MainActivity, response.errorBody())  //  status Code가 300 초과 or body가 null인 경우
+				} ?: UserServiceImpl.showError(this@MainActivity, response.errorBody())  // status Code가 300 초과 or body가 null인 경우
 	}
 	override fun onFailure(call: Call<SigninResponseData>, t: Throwable) {	// 통신 실패 로직
 	}
