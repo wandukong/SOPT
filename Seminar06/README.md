@@ -59,10 +59,9 @@ interface UserService {
 @Query 어노테이션을 매개변수로 명시해줘야 한다.  
 ```kotlin
 @GET("/api/users")
-    fun loadUsers(
-        @Query("page") page : Int  
-    ) : Call<LoadUsersResponseData>
-}
+fun loadUsers(
+    @Query("page") page : Int  
+) : Call<LoadUsersResponseData>
 ```
 
 #### Headers와 Header차이
