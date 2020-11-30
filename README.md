@@ -730,7 +730,7 @@ interface WebService {
 (위 코드는 Authorization 헤더는 두 개중 한 개만 사용하면 된다.)   
 
 #### URL 다루기
-URL을 동적으로 부분 치환 하기 위하여 ** {} **로 감싸서 정의해준다.  
+URL을 동적으로 부분 치환 하기 위하여 **{}** 로 감싸서 정의해준다.  
 이후, **@Path** 어노테이션을 매개변수로 명시해줘야 한다.  
 ```kotlin
 @GET("group/{id}/users")
