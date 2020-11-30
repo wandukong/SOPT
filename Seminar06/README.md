@@ -78,7 +78,7 @@ interface WebService {
 (위 코드는 Authorization 헤더는 두 개중 한 개만 사용하면 된다.)   
 
 #### URL 다루기
-URL을 동적으로 부분 치환 하기 위하여 **{}**로 감싸서 정의해준다.  
+URL을 동적으로 부분 치환 하기 위하여 ** {} **로 감싸서 정의해준다.  
 이후, **@Path** 어노테이션을 매개변수로 명시해줘야 한다.  
 ```kotlin
 @GET("group/{id}/users")
@@ -107,7 +107,7 @@ object UserServiceImpl {
 ## 💛Call & Callback
 **Call** 객체는 웹서버와 통신하여 response 값을 받아오는 객체이다.  
 **Callback** 객체는 웹서버와 통신하여 전달 받은 response를 가지고 어떠한 방식으로 처리할 것인지 정의하는 객체이다.  
-Call 객체를 생성한 후, 서버로부터 받은 response를 어떻게 처리할 것인지에 대한 Callback 함수를 **object**로 작성하여 **enqueue()**의 파라미터로 넘겨준다.  
+Call 객체를 생성한 후, 서버로부터 받은 response를 어떻게 처리할 것인지에 대한 Callback 함수를 **object**로 작성하여 **enqueue()** 의 파라미터로 넘겨준다.  
 ```kotlin
 // Call 객체 생성
 val call : Call<SigninResponseData> = UserServiceImpl.service.signIn(
