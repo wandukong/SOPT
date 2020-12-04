@@ -2,9 +2,10 @@
 **작성일자 : 2020.11.29**
 
 ## 📱결과 화면
-
-<img src="https://user-images.githubusercontent.com/47289479/101166576-d8bbdd80-367b-11eb-8d94-81e3cf5df71a.JPG" width="300" height="100"/>
-<img src="https://user-images.githubusercontent.com/47289479/101166614-eb361700-367b-11eb-93ed-5bf40d8562d9.JPG" width="300" height="100"/>
+<p float="left">
+	<img src="https://user-images.githubusercontent.com/47289479/101166576-d8bbdd80-367b-11eb-8d94-81e3cf5df71a.JPG" width="300" height="100"/>
+	<img src="https://user-images.githubusercontent.com/47289479/101166614-eb361700-367b-11eb-93ed-5bf40d8562d9.JPG" width="300" height="100"/>
+</p>
 ①POSTMAN TEST  
 
 <p float="left">
