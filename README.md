@@ -654,13 +654,17 @@ tl_profile.apply{
 **작성일자 : 2020.11.29**
 
 ## 📱결과 화면
+<p float="left">
+	<img src="https://user-images.githubusercontent.com/47289479/101166576-d8bbdd80-367b-11eb-8d94-81e3cf5df71a.JPG" width="300" height="100"/>
+	<img src="https://user-images.githubusercontent.com/47289479/101166614-eb361700-367b-11eb-93ed-5bf40d8562d9.JPG" width="300" height="100"/>
+</p>
+①POSTMAN TEST  
 
 <p float="left">
-	<img src="https://user-images.githubusercontent.com/47289479/100542891-4c32a900-3290-11eb-819c-dff073c90dc0.jpg" width="260" height="430"/>
-	<img src="https://user-images.githubusercontent.com/47289479/100543019-088c6f00-3291-11eb-962b-0a388cb09794.jpg" width="260" height="430"/>
+	<img src="https://user-images.githubusercontent.com/47289479/101168306-9b0c8400-367e-11eb-8900-ba9caaa0f7f2.gif" width="260" height="430"/>
 	<img src="https://user-images.githubusercontent.com/47289479/100543365-088d6e80-3293-11eb-8206-cf240eb52023.gif" width="260" height="430"/>
 </p>
-①Dummy 리스트 구현　　　　　　　②Kakao API web search 구현　　　③전체 실행 
+②구현 결과 화면  
 
 ## 💼준비 사항
 #### 라이브러리 추가
