@@ -17,6 +17,7 @@
         app:pressedTranslationZ="10dp"
         android:src="@drawable/ic_baseline_add_24"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:borderWidth="0dp"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
@@ -39,6 +40,7 @@
         app:backgroundTint="#FF0C91"
         app:layout_constraintBottom_toTopOf="@+id/btn_floatingButton"
         app:layout_constraintEnd_toEndOf="@+id/btn_floatingButton"
+        app:borderWidth="0dp"
         android:visibility="gone"/>
 
     <TextView
@@ -61,6 +63,7 @@
         android:src="@drawable/ic_baseline_thumb_up_24"
         app:layout_constraintBottom_toTopOf="@+id/btn_like"
         app:layout_constraintStart_toStartOf="@+id/btn_like"
+        app:borderWidth="0dp"
         android:visibility="gone"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
