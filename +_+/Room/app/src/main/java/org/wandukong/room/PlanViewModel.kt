@@ -9,7 +9,7 @@ import kotlinx.coroutines.launch
 
 class PlanViewModel(application: Application) : AndroidViewModel(application) {
 
-    val allData : LiveData<List<Plan>>
+    val allData : LiveData<MutableList<Plan>>
     private val repository : PlanRepository
 
     init {
@@ -21,6 +21,12 @@ class PlanViewModel(application: Application) : AndroidViewModel(application) {
     fun addPlan(plan : Plan){
         viewModelScope.launch(Dispatchers.IO){
             repository.addPlan(plan)
+        }
+    }
+
+    fun deletePlan(plan : Plan){
+        viewModelScope.launch(Dispatchers.IO){
+            repository.deletePlan(plan)
         }
     }
 }

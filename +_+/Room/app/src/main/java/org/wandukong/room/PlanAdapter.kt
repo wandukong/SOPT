@@ -4,11 +4,11 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import org.wandukong.etc.R
+import org.wandukong.room.R
 
-class PlanAdapter(private val context : Context) : RecyclerView.Adapter<PlanViewHolder>() {
+class PlanAdapter(private val context: Context, private val planViewModel: PlanViewModel) : RecyclerView.Adapter<PlanViewHolder>() {
 
-    var data = listOf<Plan>()
+    var data = mutableListOf<Plan>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlanViewHolder {
 
@@ -17,7 +17,11 @@ class PlanAdapter(private val context : Context) : RecyclerView.Adapter<PlanView
     }
 
     override fun onBindViewHolder(holder: PlanViewHolder, position: Int) {
-       holder.onBind(data[position])
+        holder.onBind(data[position])
+
+        holder.btnDelete.setOnClickListener {
+            planViewModel.deletePlan(data[position])
+        }
     }
 
     override fun getItemCount() = data.size

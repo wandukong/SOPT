@@ -6,11 +6,11 @@ import androidx.room.*
 @Dao
 interface PlanDao{
     @Query("SELECT * FROM plan_table")
-    fun getAll(): LiveData<List<Plan>>
+    fun getAll(): LiveData<MutableList<Plan>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addPlan(plan : Plan)
 
     @Delete
-    fun deletePlan(plan : Plan)
+    suspend fun deletePlan(plan : Plan)
 }
