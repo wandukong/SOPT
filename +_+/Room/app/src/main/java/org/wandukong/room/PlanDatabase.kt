@@ -1,8 +1,6 @@
-package org.wandukong.etc.room
+package org.wandukong.room
 
 import android.content.Context
-import android.os.Parcel
-import android.os.Parcelable
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase

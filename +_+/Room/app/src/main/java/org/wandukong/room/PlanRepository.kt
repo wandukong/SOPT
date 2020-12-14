@@ -1,4 +1,4 @@
-package org.wandukong.etc.room
+package org.wandukong.room
 
 import androidx.lifecycle.LiveData
 

@@ -1,4 +1,4 @@
-package org.wandukong.etc.room
+package org.wandukong.room
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
@@ -7,11 +7,9 @@ import java.text.SimpleDateFormat
 
 @Entity(tableName = "plan_table")
 data class Plan(
-
-    @PrimaryKey(autoGenerate = true)
-    val id: Int?,
-    @ColumnInfo(name="title")
     val title: String,
-    @ColumnInfo(name="date")
     val date : String = SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(System.currentTimeMillis())
-)
+) {
+    @PrimaryKey(autoGenerate = true)
+    var id: Int = 0
+}

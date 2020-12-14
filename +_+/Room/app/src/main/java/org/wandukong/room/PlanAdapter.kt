@@ -1,10 +1,9 @@
-package org.wandukong.etc.room
+package org.wandukong.room
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import org.wandukong.room.R
 
 class PlanAdapter(private val context: Context, private val planViewModel: PlanViewModel) : RecyclerView.Adapter<PlanViewHolder>() {
 

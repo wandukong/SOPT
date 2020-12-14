@@ -6,14 +6,11 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
-import org.wandukong.etc.room.Plan
-import org.wandukong.etc.room.PlanAdapter
-import org.wandukong.etc.room.PlanViewModel
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var planViewModel : PlanViewModel
-    var planSzie : Int = 0
+    //private  var planSize = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +27,7 @@ class MainActivity : AppCompatActivity() {
 
         planViewModel.allData.observe(this, Observer { planList ->
             planAdapter.data = planList
-            planSzie = planList.size
+            //planSize = planList.size
             planAdapter.notifyDataSetChanged()
         })
 
@@ -43,7 +40,7 @@ class MainActivity : AppCompatActivity() {
         val planTitle = et_plan.text.toString()
 
         if(inputCheck(planTitle)){
-            val plan = Plan(id = planSzie, title = planTitle)
+            val plan = Plan(planTitle)
             planViewModel.addPlan(plan)
             et_plan.setText("")
         }
