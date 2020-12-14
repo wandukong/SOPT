@@ -1,10 +1,16 @@
-
-
 # 💾Room (+MVVM)
 
 **ROOM은 ORM(Object Relational Mapping) 라이브러리**이다.  
 즉, ROOM은 데이터베이스의 객체를 Java or Kotlin 객체로 mapping해 준다.  
-ROOM은 SQLite의 추상레이어 위에 제공하고 있으며, SQLite의 모든 기능을 제공하면서 편한 데이터베이스의 접근을 허용합니다.   
+ROOM은 SQLite의 추상레이어 위에 제공하고 있으며, SQLite의 모든 기능을 제공하면서 편한 데이터베이스의 접근을 허용합니다.  
+ 
+## 📱결과 화면
+
+<p float="left">
+	<img src="https://user-images.githubusercontent.com/47289479/102084700-e120cf00-3e58-11eb-9914-b674b8680295.gif" width="300" height="495"/>
+	<img src="https://user-images.githubusercontent.com/47289479/102084717-ea11a080-3e58-11eb-8014-05a21f4639e6.gif" width="300" height="495"/>
+</p>
+①데이터 추가　　　　　　　　　　　　②데이터 삭제 
 
 ## 👒준비사항(build.gradle)
 ```kotlin
