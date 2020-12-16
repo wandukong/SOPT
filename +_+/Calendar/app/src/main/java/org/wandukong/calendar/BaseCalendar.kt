@@ -1,5 +1,9 @@
 package org.wandukong.calendar
 
+import android.widget.TextView
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import java.util.*
 import java.util.Calendar.*
 
@@ -9,6 +13,13 @@ class BaseCalendar {
         const val NUMBER_OF_WEEK = 7
         const val ROW_OF_CALENDAR = 6
     }
+    val timestamp = LocalDateTime.now()
+    val today = timestamp.format(DateTimeFormatter.ofPattern("yyyyMMdd"))
+    val curYear = today.substring(0,4)
+    val curMonth = today.substring(4,6)
+    var curDay = today.substring(6)
+
+    val dayList = mutableListOf<TextView>()
 
     val calendar = getInstance()
 
@@ -28,6 +39,8 @@ class BaseCalendar {
 
     private fun makeMonthDay(refreshCallback: (Calendar) -> Unit) {
         data.clear()
+        dayList.clear()
+
         calendar.set(DATE, 1) // 현재 날짜를 이번 달 1일로 설정
 
         prevMonthEndIndex = calendar.get(DAY_OF_WEEK) - 1   // 이번달이 되기 전의 마지막 날짜의 offset (일 : 1, 토 : 7)

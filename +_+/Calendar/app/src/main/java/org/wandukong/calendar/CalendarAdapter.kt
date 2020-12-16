@@ -3,14 +3,14 @@ package org.wandukong.calendar
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.activity_main.*
-import java.text.SimpleDateFormat
 import java.util.*
 
 class CalendarAdapter(private val context : Context, private val mainActivity: MainActivity) : RecyclerView.Adapter<CalendarViewHolder>() {
 
     val baseCalendar = BaseCalendar()
+
 
     init {
         baseCalendar.initBaseCalendar {
@@ -24,7 +24,7 @@ class CalendarAdapter(private val context : Context, private val mainActivity: M
     }
 
     override fun onBindViewHolder(holder: CalendarViewHolder, position: Int) {
-        holder.onBind(position, baseCalendar)
+        holder.onBind(position, baseCalendar, baseCalendar.dayList)
     }
 
     override fun getItemCount() = 42
