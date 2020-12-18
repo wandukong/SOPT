@@ -1,4 +1,4 @@
-package org.wandukong.calendar
+package org.wandukong.calendar.util
 
 import android.graphics.Rect
 import androidx.recyclerview.widget.RecyclerView

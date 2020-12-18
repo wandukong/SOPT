@@ -1,7 +1,8 @@
-package org.wandukong.calendar
+package org.wandukong.calendar.calendar
 
+import android.util.Log
 import android.widget.TextView
-import java.time.LocalDate
+import kotlinx.coroutines.channels.consumesAll
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
@@ -41,7 +42,7 @@ class BaseCalendar {
         data.clear()
         dayList.clear()
 
-        calendar.set(DATE, 1) // 현재 날짜를 이번 달 1일로 설정
+        calendar.set(DATE, 1) // 현재 날짜를 1일로 설정
 
         prevMonthEndIndex = calendar.get(DAY_OF_WEEK) - 1   // 이번달이 되기 전의 마지막 날짜의 offset (일 : 1, 토 : 7)
         curMonthMaxDay = calendar.getActualMaximum(DAY_OF_MONTH)
@@ -69,7 +70,6 @@ class BaseCalendar {
         for (i in 1..remainDayForNextMonth) data.add(i)
     }
 
-
     // 저번 달 이동
     fun changeToPrevMonth(refreshCallback: (Calendar) -> Unit) {
         if(calendar.get(MONTH) == 0){
@@ -80,7 +80,6 @@ class BaseCalendar {
         }
         makeMonthDay(refreshCallback)
     }
-
 
     // 다음 달 이동
     fun changeToNextMonth(refreshCallback: (Calendar) -> Unit) {

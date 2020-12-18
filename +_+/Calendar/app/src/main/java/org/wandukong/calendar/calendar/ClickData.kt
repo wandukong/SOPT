@@ -1,12 +1,8 @@
-package org.wandukong.calendar
+package org.wandukong.calendar.calendar
 
-import android.util.MutableInt
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
-import java.util.*
 
-class CheckDate {
+class ClickData {
     companion object{
         var preSelectedDay =  MutableLiveData<Int>().apply { postValue(0) }
         var curSelectedDay =  MutableLiveData<Int>().apply { postValue(0) }

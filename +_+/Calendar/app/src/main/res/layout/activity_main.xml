@@ -4,35 +4,99 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@color/white">
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btn_add"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearlayout_top"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="5dp"
-        android:backgroundTint="#ff6f61"
-        android:elevation="10dp"
-        android:src="@drawable/ic_baseline_add_24"
-        app:fabSize="mini"
-        app:borderWidth="0dp"
+        android:background="@color/blue"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:pressedTranslationZ="10dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tv_month"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/before_christmas"
+            android:paddingTop="5dp"
+            android:text="10월"
+            android:textColor="#222222"
+            android:textFontWeight="600"
+            android:textSize="30sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_year" />
+
+        <TextView
+            android:id="@+id/tv_year"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/before_christmas"
+            android:text="2020년"
+            android:textColor="#222222"
+            android:textFontWeight="500"
+            android:textSize="25sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/btn_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="70dp"
+            android:backgroundTint="@color/blue"
+            android:src="@drawable/ic_baseline_arrow_right_24"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_month"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_month" />
+
+        <ImageButton
+            android:id="@+id/btn_pre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="70dp"
+            android:backgroundTint="@color/blue"
+            android:src="@drawable/ic_baseline_arrow_left_24"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_month"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_month"
+            android:background="@color/white" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btn_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:backgroundTint="@color/yellow"
+            android:elevation="10dp"
+            android:src="@drawable/ic_baseline_add_24"
+            app:fabSize="mini"
+            app:borderWidth="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:pressedTranslationZ="10dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
         android:id="@+id/calendar_header"
         android:layout_width="match_parent"
         android:layout_height="30dp"
-        android:layout_marginTop="30dp"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_month"
-        android:background="@color/yellow">
+        app:layout_constraintTop_toBottomOf="@+id/linearlayout_top"
+        android:background="@color/blue">
 
         <TextView
             android:layout_width="0dp"
@@ -114,53 +178,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/calendar_header" />
 
-    <TextView
-        android:id="@+id/tv_month"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:fontFamily="@font/before_christmas"
-        android:text="10월"
-        android:textColor="#222222"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toStartOf="@+id/btn_next"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toEndOf="@+id/btn_pre"
-        app:layout_constraintTop_toBottomOf="@+id/tv_year" />
-
-    <ImageButton
-        android:id="@+id/btn_pre"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="70dp"
-        android:src="@drawable/ic_baseline_arrow_left_24"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_month"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tv_month"
-        android:background="@color/white" />
-
-    <ImageButton
-        android:id="@+id/btn_next"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="70dp"
-        android:background="@color/white"
-        android:src="@drawable/ic_baseline_arrow_right_24"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_month"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tv_month" />
-
-    <TextView
-        android:id="@+id/tv_year"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="2020년"
-        android:textColor="#222222"
-        android:fontFamily="@font/before_christmas"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcv_schedule"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
+        app:layout_constraintTop_toBottomOf="@+id/rcv_calendar"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,16 +1,19 @@
-package org.wandukong.calendar
+package org.wandukong.calendar.calendar
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import org.wandukong.calendar.MainActivity
+import org.wandukong.calendar.R
+import org.wandukong.calendar.room.ScheduleData
+import org.wandukong.calendar.schedule.ScheduleAdapter
 import java.util.*
 
 class CalendarAdapter(private val context : Context, private val mainActivity: MainActivity) : RecyclerView.Adapter<CalendarViewHolder>() {
 
     val baseCalendar = BaseCalendar()
-
+    lateinit var scheduleAdapter: ScheduleAdapter
 
     init {
         baseCalendar.initBaseCalendar {

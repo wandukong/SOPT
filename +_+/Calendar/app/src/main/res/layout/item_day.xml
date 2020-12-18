@@ -16,6 +16,7 @@
         android:textColor="@color/black"
         android:gravity="center_horizontal"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/circle_unselected"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
