@@ -21,7 +21,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:fontFamily="@font/before_christmas"
+            android:fontFamily="@font/hanged_letters"
             android:paddingTop="5dp"
             android:text="10월"
             android:textColor="#222222"
@@ -37,7 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:fontFamily="@font/before_christmas"
+            android:fontFamily="@font/hanged_letters"
             android:text="2020년"
             android:textColor="#222222"
             android:textFontWeight="500"
@@ -106,7 +106,7 @@
             android:text="Sun"
             android:textSize="20sp"
             android:textColor="#ff0000"
-            android:fontFamily="@font/before_christmas"/>
+            android:fontFamily="@font/hanged_letters"/>
 
         <TextView
             android:layout_width="0dp"
@@ -116,7 +116,7 @@
             android:text="Mon"
             android:textSize="20sp"
             android:textColor="#222222"
-            android:fontFamily="@font/before_christmas"/>
+            android:fontFamily="@font/hanged_letters"/>
 
         <TextView
             android:layout_width="0dp"
@@ -126,7 +126,7 @@
             android:text="Tue"
             android:textSize="20sp"
             android:textColor="#222222"
-            android:fontFamily="@font/before_christmas"/>
+            android:fontFamily="@font/hanged_letters"/>
 
         <TextView
             android:layout_width="0dp"
@@ -136,7 +136,7 @@
             android:text="Wen"
             android:textSize="20sp"
             android:textColor="#222222"
-            android:fontFamily="@font/before_christmas"/>
+            android:fontFamily="@font/hanged_letters"/>
 
         <TextView
             android:layout_width="0dp"
@@ -146,7 +146,7 @@
             android:text="Thu"
             android:textSize="20sp"
             android:textColor="#222222"
-            android:fontFamily="@font/before_christmas"/>
+            android:fontFamily="@font/hanged_letters"/>
 
         <TextView
             android:layout_width="0dp"
@@ -156,7 +156,7 @@
             android:text="Fri"
             android:textSize="20sp"
             android:textColor="#222222"
-            android:fontFamily="@font/before_christmas"/>
+            android:fontFamily="@font/hanged_letters"/>
 
         <TextView
             android:layout_width="0dp"
@@ -166,7 +166,7 @@
             android:text="Sat"
             android:textSize="20sp"
             android:textColor="#222222"
-            android:fontFamily="@font/before_christmas"/>
+            android:fontFamily="@font/hanged_letters"/>
 
     </LinearLayout>
 
