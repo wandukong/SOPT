@@ -133,8 +133,7 @@ window.setFlags(
 	WindowManager.LayoutParams.FLAG_FULLSCREEN
 )
 ``` 
-<img src="https://user-images.githubusercontent.com/47289479/102898766-51f56600-44ad-11eb-802e-19da525201c8.JPG" width=400 height=100>
-
+<img src="https://user-images.githubusercontent.com/47289479/102899772-c7ae0180-44ae-11eb-8f69-1ef3317db28d.JPG" width=400 height=70>
 
 ## 🥉Style
 
