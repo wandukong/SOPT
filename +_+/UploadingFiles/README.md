@@ -1,8 +1,10 @@
 # 📂Uploading my files.
 
 ## 📱결과 화면
-<img src="https://user-images.githubusercontent.com/47289479/102919263-e242a380-44cb-11eb-9385-2c7b85deec96.gif" width=300 height=495/>
-
+<p float="left">
+	<img src="https://user-images.githubusercontent.com/47289479/102919263-e242a380-44cb-11eb-9385-2c7b85deec96.gif" width=300 height=495/>
+	<img src="https://user-images.githubusercontent.com/47289479/103140314-5aa5a080-4728-11eb-90c4-7442af77472e.gif" width=300 height=495/>
+</p>
 ## 👶준비사항
 ```xml
 <!-- AndroidManifest.xml -->
