@@ -12,6 +12,7 @@ class FloatingButton : AppCompatActivity() {
     private var clicked = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(R.style.Theme_AppCompat_Light_DarkActionBar)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_floating_button)
 

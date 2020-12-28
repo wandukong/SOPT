@@ -283,3 +283,104 @@ btn_floatingButton.setOnClickListener {
 	}
 }
 ```
+
+## 🎊Splash
+<img src="https://user-images.githubusercontent.com/47289479/103209482-8e5e1180-4946-11eb-8b1f-d6624ce8d63d.gif" width="300" height="495"/>
+
+### 구현1 (Activity X- 시간 설정 X)
+#### drawbale 폴더에 splash.xml 추가
+```xml
+<?xml version="1.0" encoding="utf-8"?>  
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">  
+	<item android:drawable="@color/blue" />  
+	<item>  
+		<bitmap  
+			android:src="@drawable/snoopy"  
+			android:gravity="center"/>  
+	</item>  
+</layer-list>
+```
+
+#### values 폴더에 styles.xml 을 추가
+```xml
+<?xml version="1.0" encoding="utf-8"?>  
+<resources>  
+	<style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">  
+		<item name="android:windowBackground">@drawable/splash</item>  
+	</style>  
+</resources>
+```
+
+#### AndroidManifest.xml 수정
+첫 실행 Activity의 theme 속성에  SplashTheme 적용
+```xml
+<activity  
+  android:name=".FloatingButton"  
+  android:theme="@style/SplashTheme">  
+ <intent-filter>  
+ <action android:name="android.intent.action.MAIN" />  
+  
+ <category android:name="android.intent.category.LAUNCHER" />  
+ </intent-filter>  
+</activity>
+```
+
+#### 첫 실행 Activity
+
+첫 실행 Activity의 Theme를 **setTheme()** 를 이용하여 기존 테마로 되돌린다.
+**super.onCreate(savedInstanceState) 이전**  에 **setTheme()** 를 하시는 것이 불필요한 LifeCycle  회전을 방지한다.
+```kotlin
+override fun onCreate(savedInstanceState: Bundle?) {
+	setTheme(R.style.Theme_AppCompat_Light_DarkActionBar)
+	super.onCreate(savedInstanceState)
+	...
+}
+```
+
+### 구현2 (Activity O- 시간 설정 O)
+
+### activity_splash.xml
+```kotlin
+<?xml version="1.0" encoding="utf-8"?>  
+<androidx.constraintlayout.widget.ConstraintLayout 
+	xmlns:android="http://schemas.android.com/apk/res/android"  
+	xmlns:app="http://schemas.android.com/apk/res-auto"  
+	xmlns:tools="http://schemas.android.com/tools"  
+	android:layout_width="match_parent"  
+	android:layout_height="match_parent"  
+	tools:context=".SplashActivity"  
+	android:background="@color/blue"  
+	style="@android:style/Theme.Material.NoActionBar">  
+
+	<ImageView  
+		android:layout_width="wrap_content"  
+		android:layout_height="wrap_content"  
+		android:src="@drawable/snoopy"  
+		app:layout_constraintBottom_toBottomOf="parent"  
+		app:layout_constraintEnd_toEndOf="parent"  
+		app:layout_constraintStart_toStartOf="parent"  
+		app:layout_constraintTop_toTopOf="parent" />  
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+```
+
+#### SplashActivity
+```kotlin
+companion object {  
+	const  val SPLASH_TIME_OUT = 5000  
+}  
+  
+override fun onCreate(savedInstanceState: Bundle?) {  
+	super.onCreate(savedInstanceState)  
+	setContentView(R.layout.activity_splash)  
+
+	val intent = Intent(this, MainActivity::class.java)  
+	Handler().postDelayed({  
+		startActivity(intent)  
+		finish()  
+	}, SPLASH_TIME_OUT.toLong())  
+}  
+  
+override fun onBackPressed() {  // 뒤로가기 방지
+}
+```
