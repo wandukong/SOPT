@@ -10,9 +10,12 @@ import android.view.MotionEvent
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
-import org.wandukong.app.model.SigninRequestData
-import org.wandukong.app.model.SigninResponseData
-import org.wandukong.app.service.UserServiceImpl
+import org.wandukong.app.R
+import org.wandukong.app.sign.data.SigninRequestData
+import org.wandukong.app.sign.data.SigninResponseData
+import org.wandukong.app.network.UserServiceImpl
+import org.wandukong.app.sign.SignupActivity
+import org.wandukong.app.util.EditTextEventListener
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
