@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.fragment_profile_other.*
 import org.wandukong.app.R
+import org.wandukong.app.profile.data.ProfileOtherData
 
 class ProfileOtherFragment : Fragment() {
 
