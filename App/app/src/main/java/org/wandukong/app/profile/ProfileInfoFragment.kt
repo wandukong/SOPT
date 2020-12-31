@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_profile_info.*
 import org.wandukong.app.R
+import org.wandukong.app.profile.data.ProfileInfoData
 
 class ProfileInfoFragment : Fragment() {
 

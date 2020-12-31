@@ -4,9 +4,8 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import org.wandukong.app.profile.ProfileOtherViewHolder
 import org.wandukong.app.R
-import org.wandukong.app.profile.ProfileOtherData
+import org.wandukong.app.profile.data.ProfileOtherData
 
 class ProfileOtherAdapter (private val context: Context) :RecyclerView.Adapter<ProfileOtherViewHolder>(){
     var data : MutableList<ProfileOtherData> = mutableListOf()

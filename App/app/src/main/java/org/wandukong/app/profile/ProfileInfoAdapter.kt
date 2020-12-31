@@ -4,9 +4,8 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import org.wandukong.app.profile.ProfileInfoViewHolder
 import org.wandukong.app.R
-import org.wandukong.app.profile.ProfileInfoData
+import org.wandukong.app.profile.data.ProfileInfoData
 
 class ProfileInfoAdapter (private val context: Context) : RecyclerView.Adapter<ProfileInfoViewHolder>() {
 

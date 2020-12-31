@@ -1,4 +1,4 @@
-package org.wandukong.app.profile
+package org.wandukong.app.profile.data
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
