@@ -5,45 +5,45 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.fragment_profile_info.*
 import org.wandukong.app.R
-import org.wandukong.app.profile.data.ProfileInfoData
+import org.wandukong.app.databinding.FragmentProfileInfoBinding
 
 class ProfileInfoFragment : Fragment() {
 
-    private var infoList = mutableListOf<ProfileInfoData>()
     private lateinit var profileInfoAdapter : ProfileInfoAdapter
-
+    private lateinit var viewModel: ProfileViewModel
+    private lateinit var binding : FragmentProfileInfoBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_profile_info, container, false)
-        return view
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_profile_info, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        createRecyclerView(view)
+        viewModel = ViewModelProvider(requireActivity(), object : ViewModelProvider.Factory{
+            override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+                return ProfileViewModel() as T
+            }
+        }).get(ProfileViewModel::class.java)
+
+        createRecyclerView()
     }
 
-    private fun createRecyclerView(view : View){
-        infoList.add(ProfileInfoData("Age", "27", "숫자에 불과해"))
-        infoList.add(ProfileInfoData("Birthday", "6, July", "축하해주세요"))
-        infoList.add(ProfileInfoData("Residence", "Ilsan", "23년째 사는 중이에요"))
-        infoList.add(ProfileInfoData("Instagram", "_sxxngwxn", "팔로우 해주세요"))
-        infoList.add(ProfileInfoData("Github", "wandukong", "팔로우 해주세요"))
-        infoList.add(ProfileInfoData("Part", "Android", "안드로이드 파트 짱"))
-        infoList.add(ProfileInfoData("Group", "E","E조 모이자"))
+    private fun createRecyclerView(){
+        profileInfoAdapter = ProfileInfoAdapter()
+        rcv_info_profile.adapter = profileInfoAdapter
 
-        profileInfoAdapter = ProfileInfoAdapter(view.context)
-        profileInfoAdapter.data = infoList
-
-        rcv_info_profile.apply {
-            layoutManager = LinearLayoutManager(context)
-            adapter = profileInfoAdapter
-        }
-        profileInfoAdapter.notifyDataSetChanged()
+        viewModel.infoList.observe(requireActivity(), Observer {
+            profileInfoAdapter.data = it
+            profileInfoAdapter.notifyDataSetChanged()
+        })
     }
 }
