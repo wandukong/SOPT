@@ -19,10 +19,9 @@ class FilesAdapter(private val context : Context) : RecyclerView.Adapter<FilesVi
     }
 
     override fun onBindViewHolder(holder: FilesViewHolder, position: Int) {
-        Log.e("e",bmpData.size.toString());
         if(bmpData.size != 0) {
             holder.onBindForBMP(bmpData[position])
-            Log.e("e",bmpData[position].toString());
+            Log.e("c",bmpData[position].toString());
         }
         else{
             holder.onBindForURI(uriData[position])

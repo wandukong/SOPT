@@ -111,12 +111,10 @@ class MultipleFilesActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
 
         if(resultCode == Activity.RESULT_OK) {
-            filesAdapter.bmpData.clear()
-            filesAdapter.uriData.clear()
             when(requestCode){
                 CAMERA_CAPTURE_CODE -> {
-                    val bmp = data?.extras!!.get("data") as Bitmap
-                    filesAdapter.bmpData.add(bmp)
+                    filesAdapter.bmpData.add(data?.extras!!.get("data") as Bitmap)
+                    Log.e("a",filesAdapter.bmpData.size.toString());
                 }
                 IMAGE_PICK_CODE -> {
                     if (data?.clipData != null) {
