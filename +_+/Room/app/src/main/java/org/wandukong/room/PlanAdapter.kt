@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-class PlanAdapter(private val context: Context, private val planViewModel: PlanViewModel) : RecyclerView.Adapter<PlanViewHolder>() {
+class PlanAdapter(private val context: Context, private val planViewModel: MainViewModel) : RecyclerView.Adapter<PlanViewHolder>() {
 
     var data = mutableListOf<Plan>()
 

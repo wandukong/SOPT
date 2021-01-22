@@ -2,51 +2,34 @@ package org.wandukong.room
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.viewModels
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.activity_main.*
+import org.wandukong.room.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var planViewModel : PlanViewModel
-    //private  var planSize = 0
+    val mainViewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        val databinding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
 
-        planViewModel= ViewModelProvider(this).get(PlanViewModel::class.java)
+        databinding.lifecycleOwner = this
+        databinding.viewModel = mainViewModel
 
-        val planAdapter = PlanAdapter(this, planViewModel)
+        val planAdapter = PlanAdapter(this, mainViewModel)
 
-        rcv_plan.apply {
+        databinding.rcvPlan.apply {
             adapter = planAdapter
             layoutManager = LinearLayoutManager(this@MainActivity)
         }
 
-        planViewModel.allData.observe(this, Observer { planList ->
+        mainViewModel.getAll().observe(this, Observer { planList ->
             planAdapter.data = planList
-            //planSize = planList.size
             planAdapter.notifyDataSetChanged()
+            databinding.etPlan.text = null
         })
-
-        btn_add_plan.setOnClickListener {
-            insertDataToDatabase()
-        }
-    }
-
-    private fun insertDataToDatabase() {
-        val planTitle = et_plan.text.toString()
-
-        if(inputCheck(planTitle)){
-            val plan = Plan(planTitle)
-            planViewModel.addPlan(plan)
-            et_plan.setText("")
-        }
-    }
-
-    private fun inputCheck(planTitle : String): Boolean {
-        return !(planTitle.isNullOrEmpty())
     }
 }

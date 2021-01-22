@@ -1,57 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:background="#efeeee">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <soup.neumorphism.NeumorphCardView
-        android:id="@+id/neumorphCardView"
-        style="@style/Widget.Neumorph.CardView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        app:layout_constraintEnd_toStartOf="@+id/btn_add_plan"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:neumorph_shadowColorDark="#e7e4e0"
-        app:neumorph_shadowColorLight="#f4f2f1"
-        app:neumorph_shadowElevation="6dp">
+    <data>
+        <variable
+            name="viewModel"
+            type="org.wandukong.room.MainViewModel" />
+    </data>
 
-        <EditText
-            android:id="@+id/et_plan"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:ems="10"
-            android:inputType="textPersonName" />
-
-    </soup.neumorphism.NeumorphCardView>
-
-    <soup.neumorphism.NeumorphButton
-        android:id="@+id/btn_add_plan"
-        style="@style/Widget.Neumorph.Button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="5dp"
-        android:text="ADD"
-        app:layout_constraintBottom_toBottomOf="@+id/neumorphCardView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/neumorphCardView"
-        app:neumorph_shadowColorDark="#e7e4e0"
-        app:neumorph_shadowColorLight="#f4f2f1"
-        app:neumorph_shadowElevation="6dp" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rcv_plan"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/neumorphCardView" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_height="match_parent"
+        tools:context=".MainActivity"
+        android:background="#efeeee">
+
+        <soup.neumorphism.NeumorphCardView
+            android:id="@+id/neumorphCardView"
+            style="@style/Widget.Neumorph.CardView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toStartOf="@+id/btn_add_plan"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:neumorph_shadowColorDark="#e7e4e0"
+            app:neumorph_shadowColorLight="#f4f2f1"
+            app:neumorph_shadowElevation="6dp">
+
+            <EditText
+                android:id="@+id/et_plan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="@={viewModel.newPlan}"/>
+
+        </soup.neumorphism.NeumorphCardView>
+
+        <soup.neumorphism.NeumorphButton
+            android:id="@+id/btn_add_plan"
+            style="@style/Widget.Neumorph.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:text="ADD"
+            app:layout_constraintBottom_toBottomOf="@+id/neumorphCardView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/neumorphCardView"
+            app:neumorph_shadowColorDark="#e7e4e0"
+            app:neumorph_shadowColorLight="#f4f2f1"
+            app:neumorph_shadowElevation="6dp"
+            android:onClick="@{() -> viewModel.addPlan(viewModel.newPlan)}"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcv_plan"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/neumorphCardView" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

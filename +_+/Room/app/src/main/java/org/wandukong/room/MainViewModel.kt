@@ -7,20 +7,27 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class PlanViewModel(application: Application) : AndroidViewModel(application) {
+class MainViewModel(application: Application) : AndroidViewModel(application) {
 
-    val allData : LiveData<MutableList<Plan>>
+    var allData : LiveData<MutableList<Plan>>
     private val repository : PlanRepository
+    var newPlan : String? = null
 
     init {
         val planDao = PlanDatabase.getDatabase(application).planDao()
         repository = PlanRepository(planDao)
-        allData = repository.allData
+        allData = getAll()
     }
 
-    fun addPlan(plan : Plan){
+    fun getAll() : LiveData<MutableList<Plan>>{
+        return repository.getAll()
+    }
+
+    fun addPlan(plan : String){
+        if(plan.isNullOrBlank())
+            return
         viewModelScope.launch(Dispatchers.IO){
-            repository.addPlan(plan)
+            repository.addPlan(Plan(plan))
         }
     }
 
