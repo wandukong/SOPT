@@ -22,7 +22,6 @@ import java.util.*
 class MainActivity : AppCompatActivity() {
 
     private lateinit var currentPhotoPath: String
-    private lateinit var outputDirectory: File
 
     companion object{
         const val REQUEST_TAKE_PHOTO = 1
@@ -56,6 +55,22 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        when(requestCode){
+            REQUEST_TAKE_PHOTO -> {
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    takePictureIntent()
+                } else { // permission from popup denied
+                    Toast.makeText(baseContext, "Permission denied", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+
     private fun takePictureIntent() {
         Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
             // Ensure that there's a camera activity to handle the intent
@@ -81,19 +96,16 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        when(requestCode){
-            REQUEST_TAKE_PHOTO -> {
-                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    takePictureIntent()
-                } else { // permission from popup denied
-                    Toast.makeText(baseContext, "Permission denied", Toast.LENGTH_SHORT).show()
-                }
-            }
+    @Throws(IOException::class)
+    private fun createImageFile(): File {
+        val timeStamp: String = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
+        val storageDir: File? = getOutputDirectory()
+        return File.createTempFile(
+            timeStamp,    // 파일명
+            ".jpg", // 확장자
+            storageDir // 저장경로
+        ).apply {
+            currentPhotoPath = absolutePath
         }
     }
 
@@ -110,21 +122,6 @@ class MainActivity : AppCompatActivity() {
             val file = File(currentPhotoPath)
             mediaScanIntent.data = Uri.fromFile(file)
             sendBroadcast(mediaScanIntent)
-        }
-    }
-
-    @Throws(IOException::class)
-    private fun createImageFile(): File {
-        // Create an image file name
-        val timeStamp: String = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
-        val storageDir: File? = getOutputDirectory()
-        return File.createTempFile(
-            timeStamp, /* prefix */
-            ".jpg", /* suffix */
-            storageDir /* directory */
-        ).apply {
-            // Save a file: path for use with ACTION_VIEW intents
-            currentPhotoPath = absolutePath
         }
     }
 
