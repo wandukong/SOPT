@@ -20,9 +20,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
-
     private lateinit var currentPhotoPath: String
-
     companion object{
         const val REQUEST_TAKE_PHOTO = 1
     }
@@ -42,9 +40,8 @@ class MainActivity : AppCompatActivity() {
                     baseContext,
                     Manifest.permission.CAMERA
                 ) == PackageManager.PERMISSION_DENIED){
-                // permission denied
                 val permissions = arrayOf(android.Manifest.permission.CAMERA)
-                // show popup to request runtime permission
+                // 권한 허가 요청
                 requestPermissions(permissions, REQUEST_TAKE_PHOTO)
             }else{
                 takePictureIntent()
@@ -64,7 +61,7 @@ class MainActivity : AppCompatActivity() {
             REQUEST_TAKE_PHOTO -> {
                 if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     takePictureIntent()
-                } else { // permission from popup denied
+                } else { // 권한 요청 거절
                     Toast.makeText(baseContext, "Permission denied", Toast.LENGTH_SHORT).show()
                 }
             }
@@ -82,11 +79,10 @@ class MainActivity : AppCompatActivity() {
                     Log.e("Error", ex.toString())
                     null
                 }
-                // Continue only if the File was successfully created
-                photoFile?.also {
+                photoFile?.also {  // PhotoFile이 성공적으로 만들어진 경우
                     val photoURI: Uri = FileProvider.getUriForFile(
                         this,
-                        "org.wandukong.basiccamera",
+                        "org.wandukong.basiccamera",  // provider의 authorities
                         it
                     )
                     takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
@@ -113,7 +109,7 @@ class MainActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQUEST_TAKE_PHOTO && resultCode == RESULT_OK) {
             iv_camera.setImageURI(currentPhotoPath.toUri())
-            galleryAddPic()
+            galleryAddPic() // 기기에 사진 저장
         }
     }
 
