@@ -5,34 +5,33 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import org.wandukong.navigation.databinding.FragmentFirstBinding
+import org.wandukong.navigation.databinding.FragmentThirdBinding
 
-class FirstFragment : Fragment() {
+class ThirdFragment : Fragment() {
 
-    private var _binding : FragmentFirstBinding? = null
+    private var _binding : FragmentThirdBinding? = null
     private val binding get() = _binding!!
 
-    val args : FirstFragmentArgs by navArgs()
+    val args : ThirdFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentFirstBinding.inflate(inflater, container, false)
+        _binding = FragmentThirdBinding.inflate(inflater, container, false)
         binding.fragment = this
         return binding.root
     }
 
-    fun moveSecondFragment(){
-        val action = FirstFragmentDirections.actionFirstFragmentToSecondFragment("From First")
+    fun moveFirstFragment(){
+        val action = ThirdFragmentDirections.actionThirdFragmentToFirstFragment("From Third")
         findNavController().navigate(action)
     }
 
-    fun moveThirdFragment(){
-        val action = FirstFragmentDirections.actionFirstFragmentToThirdFragment("From First")
+    fun moveSecondFragment(){
+        val action = ThirdFragmentDirections.actionThirdFragmentToSecondFragment("From Third")
         findNavController().navigate(action)
     }
 
