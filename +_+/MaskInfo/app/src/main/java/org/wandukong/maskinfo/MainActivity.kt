@@ -2,16 +2,18 @@ package org.wandukong.maskinfo
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
+import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
-import org.wandukong.maskinfo.MaskServiceImpl.customEnqueue
+import androidx.lifecycle.Observer
 import org.wandukong.maskinfo.databinding.ActivityMainBinding
-import retrofit2.Call
 
 class MainActivity : AppCompatActivity() {
     private var _binding: ActivityMainBinding? = null
     private lateinit var maskAdapter: MaskAdapter
     private val binding get() = _binding
-    private val maskList = mutableListOf<MaskData>()
+    private val viewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,18 +21,25 @@ class MainActivity : AppCompatActivity() {
 
         maskAdapter = MaskAdapter()
         binding!!.rvMask.adapter = maskAdapter
-        maskList.add(MaskData("솔약국", "경기도 고양시", "4.3km", "양호", "35"))
-        maskAdapter.updateItems(maskList)
 
+        viewModel.maskList.observe(this, Observer {
+            maskAdapter.updateItems(it as MutableList<ResponseStoreData.Store>)
+            supportActionBar?.title = "마스크 재고 있는 곳: " + it.size
+        })
+    }
 
-//        val service: Call<ResponseStoreData> = MaskServiceImpl.service.getMaskInfo(36.5, 143.3)
-//        service.customEnqueue(
-//            onSuccess = {
-//
-//            },
-//            onError = {
-//
-//            }
-//        )
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.menu_refresh ->{
+                viewModel.fetchMaskInfo()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

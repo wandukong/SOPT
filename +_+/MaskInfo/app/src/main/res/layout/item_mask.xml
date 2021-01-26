@@ -8,7 +8,7 @@
     <data>
         <variable
             name="data"
-            type="org.wandukong.maskinfo.MaskData" />
+            type="org.wandukong.maskinfo.ResponseStoreData.Store" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -41,7 +41,7 @@
             android:id="@+id/tv_distance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{data.distance}"
+            android:text="0.0km"
             app:layout_constraintStart_toStartOf="@+id/tv_addr"
             app:layout_constraintTop_toBottomOf="@+id/tv_addr"
             tools:text="1.0km" />
@@ -52,7 +52,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:text="@{data.remain}"
+            android:text="재고 없음"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="충분" />
@@ -61,7 +61,7 @@
             android:id="@+id/tv_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{data.count}"
+            android:text="1개 이하"
             app:layout_constraintEnd_toEndOf="@+id/tv_remain"
             app:layout_constraintTop_toBottomOf="@+id/tv_remain"
             tools:text="100개 이상" />
