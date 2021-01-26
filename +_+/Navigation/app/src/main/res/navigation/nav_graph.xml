@@ -34,7 +34,8 @@
             app:destination="@id/firstFragment" />
         <argument
             android:name="from"
-            app:argType="string" />
+            app:argType="string"
+            android:defaultValue="X" />
     </fragment>
     <fragment
         android:id="@+id/thirdFragment"
@@ -49,6 +50,7 @@
             app:destination="@id/firstFragment" />
         <argument
             android:name="from"
-            app:argType="string" />
+            app:argType="string"
+            android:defaultValue="X" />
     </fragment>
 </navigation>
