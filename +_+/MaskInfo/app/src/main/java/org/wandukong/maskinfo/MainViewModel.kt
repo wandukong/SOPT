@@ -1,35 +1,56 @@
 package org.wandukong.maskinfo
 
-import android.util.Log
+import android.text.BoringLayout
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import org.wandukong.maskinfo.MaskServiceImpl.customEnqueue
-import retrofit2.Call
 import java.util.*
-import java.util.stream.Collectors
 
 class MainViewModel : ViewModel(){
-    var maskList = MutableLiveData<List<ResponseStoreData.Store>>()
-    private val service: Call<ResponseStoreData> = MaskServiceImpl.service.getMaskInfo(37.188078, 127.043002)
+    private val _maskList = MutableLiveData<List<ResponseStoreData.Store>>()
+    val maskList: LiveData<List<ResponseStoreData.Store>> get() = _maskList
 
-    init {
-        fetchMaskInfo()
-    }
+    private val _latitude = MutableLiveData<Double>()
+    val latitude: LiveData<Double> get() = _latitude
+
+    private val _longitude = MutableLiveData<Double>()
+    val longitude: LiveData<Double> get() = _longitude
+
+    private val _loadingData = MutableLiveData<Boolean>(false)
+    val loadingData: LiveData<Boolean> get() = _loadingData
+
+    private val service = MaskServiceImpl.service
 
     fun fetchMaskInfo(){
-        service.customEnqueue(
+        setLoadingData()
+        service.getMaskInfo(latitude.value!!, longitude.value!!)
+            .customEnqueue(
             onSuccess = {
-                val items = it.stores
-                    .stream()
-                    .filter { item -> item.remain_stat != null && item.remain_stat != "break"}
-                    .collect(Collectors.toList())
-                maskList.postValue(items as List<ResponseStoreData.Store>)
+                val items = it.stores.filter { item -> item.remain_stat != null && item.remain_stat != "break" }
+                for(item in items){
+                    item.distance = LocationDistance.distance(latitude.value!!, longitude.value!!,
+                        item.lat, item.lng, "k")
+                }
+                val sortedItems = items.sortedBy { item -> item.distance }
+                _maskList.postValue(sortedItems)
+                _loadingData.postValue(false)
             },
             onFail = {
-              maskList.postValue(Collections.emptyList())
+                _maskList.postValue(Collections.emptyList())
+                _loadingData.postValue(false)
             },
-            onError = {
-            }
+            onError = {}
         )
+    }
+
+    fun setLoadingData(){
+        _loadingData.value = true
+    }
+    fun setLatitude(lat : Double){
+        _latitude.value = lat
+    }
+    fun setLongitude(lng : Double){
+        _longitude.value = lng
     }
 }

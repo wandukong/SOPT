@@ -63,6 +63,7 @@ class MaskAdapter : RecyclerView.Adapter<MaskAdapter.VHolder>() {
             binding.tvRemain.setTextColor(color)
             binding.tvCount.text = count
             binding.tvCount.setTextColor(color)
+            binding.tvDistance.text = "%.2fkm".format(data.distance)
         }
     }
 }

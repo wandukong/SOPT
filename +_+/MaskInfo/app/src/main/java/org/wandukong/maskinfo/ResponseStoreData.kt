@@ -13,6 +13,7 @@ data class ResponseStoreData(
         val name: String,
         val remain_stat: String,
         val stock_at: String,
-        val type: String
+        val type: String,
+        var distance: Double
     )
 }
