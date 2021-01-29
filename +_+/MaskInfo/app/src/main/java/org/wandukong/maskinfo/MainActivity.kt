@@ -6,7 +6,6 @@ import android.content.pm.PackageManager
 import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -38,24 +37,21 @@ class MainActivity : AppCompatActivity() {
         _binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         requestLocation()
+
+        viewModel.apply {
+            loadingData.observe(this@MainActivity, Observer { isLoading ->
+                binding!!.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+            })
+            maskList.observe(this@MainActivity, Observer { maskList ->
+                maskAdapter.updateItems(maskList as MutableList<ResponseStoreData.Store>)
+                supportActionBar?.title = "마스크 재고 있는 곳: " + maskList.size
+            })
+        }
     }
 
     private fun makeMaskList() {
         maskAdapter = MaskAdapter()
         binding!!.rvMask.adapter = maskAdapter
-
-        viewModel.loadingData.observe(this, Observer {
-            if(it)
-                binding!!.progressBar.visibility = View.VISIBLE
-            else{
-                binding!!.progressBar.visibility = View.GONE
-            }
-        })
-
-        viewModel.maskList.observe(this, Observer {
-            maskAdapter.updateItems(it as MutableList<ResponseStoreData.Store>)
-            supportActionBar?.title = "마스크 재고 있는 곳: " + it.size
-        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -64,8 +60,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId){
-            R.id.menu_refresh ->{
+        when (item.itemId) {
+            R.id.menu_refresh -> {
                 requestLocation()
                 return true
             }
@@ -82,17 +78,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     @SuppressLint("MissingPermission")
-    private fun loadLocation(){
+    private fun loadLocation() {
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         fusedLocationClient.lastLocation
-            .addOnSuccessListener { location : Location? ->
+            .addOnSuccessListener { location: Location? ->
                 // Got last known location. In some rare situations this can be null.
-                if(location != null){
+                if (location != null) {
                     viewModel.setLatitude(location.latitude)
                     viewModel.setLongitude(location.longitude)
                     viewModel.fetchMaskInfo()
                     makeMaskList()
-                    Log.e("asd", "lat : ${location.latitude}, lng : ${location.longitude}")
                 }
             }
     }
@@ -115,9 +110,9 @@ class MainActivity : AppCompatActivity() {
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
-        grantResults: IntArray
+        grantResults: IntArray,
     ) {
-        when(requestCode){
+        when (requestCode) {
             REQUEST_CODE_PERMISSION_LOCATION -> permissionResponseEvent()
         }
     }
@@ -132,5 +127,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun permissionDeniedEvent() {
         Toast.makeText(this, "Permission Denied!!!", Toast.LENGTH_SHORT).show()
+        viewModel.setLoadingData(false)
     }
 }

@@ -1,9 +1,5 @@
 package org.wandukong.maskinfo
 
-import okhttp3.ResponseBody
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -16,23 +12,4 @@ object MaskServiceImpl {
         .build()
 
     val service = retrofit.create(MaskService::class.java)
-
-    fun<ResponseType> Call<ResponseType>.customEnqueue(
-        onSuccess : (ResponseType) -> Unit,
-        onFail : () -> Unit,
-        onError : (ResponseBody?) -> Unit = {}
-    ){
-        this.enqueue( object : Callback<ResponseType> {
-            override fun onFailure(call: Call<ResponseType>, t: Throwable) {
-                onFail()
-            }
-            override fun onResponse(call: Call<ResponseType>, response: Response<ResponseType>) {
-                response.takeIf { it.isSuccessful }
-                    ?.body()
-                    ?.let {
-                        onSuccess(it)
-                    }?:onError(response.errorBody())
-            }
-        })
-    }
 }
